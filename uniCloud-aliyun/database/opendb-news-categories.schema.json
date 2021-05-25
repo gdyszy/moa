@@ -1,0 +1,64 @@
+{
+	"bsonType": "object",
+	"required": ["name"],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "存储文档 ID（文章 ID），系统自动生成"
+		},
+		"status": {
+			"bsonType": "int",
+			"description": "状态：0 正常 1 隐藏",
+			"title": "状态",
+			"defaultValue": 0,
+			"enum": [{
+				"text": "正常",
+				"value": 0
+			}, {
+				"text": "隐藏",
+				"value": 1
+			}]
+		},
+		"weight": {
+			"bsonType": "int",
+			"description": "权重"
+		},
+		"name": {
+			"bsonType": "string",
+			"description": "类别名称",
+			"label": "名称"
+		},
+		"description": {
+			"bsonType": "string",
+			"description": "类别描述",
+			"label": "描述"
+		},
+		"icon": {
+			"bsonType": "string",
+			"description": "类别图标地址",
+			"label": "图标地址",
+			"pattern": "^(http:\/\/|https:\/\/|\/|.\/|@\/)\\S"
+		},
+		"sort": {
+			"bsonType": "int",
+			"description": "类别显示顺序",
+			"label": "排序"
+		},
+		"article_count": {
+			"bsonType": "int",
+			"description": "该类别下文章数量"
+		},
+		"create_date": {
+			"bsonType": "timestamp",
+			"description": "创建时间",
+			"forceDefaultValue": {
+				"$env": "now"
+			}
+		}
+	}
+}

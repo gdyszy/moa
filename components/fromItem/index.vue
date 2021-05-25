@@ -1,0 +1,219 @@
+<template>
+	<view class="item">
+		<view class="input_item" v-if="mode == 'input'">
+			<view>{{itemTitle}}</view>
+			<view class="input_put">
+				<input type="text" style="width: 100%;" maxlength="40" v-model="itemVal" :placeholder="placeholder" placeholder-style="#999999" />
+			</view>
+		</view>
+		
+		<view class="input_item" v-if="mode == 'picker'">
+			<view>{{itemTitle}}</view>
+			<view class="input_put picker_put">
+				<date-time class="pickerDate" :border="false" v-model="ddTime" :type='dateType' :hide-second="true" @change="change"></date-time>
+				<view class="tab_icon">
+					<image src="../../static/workOverTime/btn_01.png" style="width: 100%; height: 100%;"></image>
+				</view>
+			</view>
+		</view>
+		
+		<view v-if="mode =='select'">
+			<view>{{itemTitle}}</view>
+			<view class="input_put" @tap="selectType">
+				{{arr[selCur].name}}
+				<view style="z-index: 99999;">
+					<uni-popup ref="selectPopup" type="bottom" :maskClick="false">
+						<view class="sel_content">
+							<view class="header">
+								<view style="font-weight: bold; font-size: 16px;">请假类型</view>
+								<view style="color: #3B88F5;" @tap="selConfirm">确定</view>
+							</view>
+							 <scroll-view style="height: 80%;;" scroll-y="true">
+								<view class="list-cell" v-for="(item,index) in arr" :key="index" @tap="selType(index)">
+									<view class="list_icon" v-if="selCur == index"><image src="../../static/workOverTime/btn-next@2x.png" style="width: 100%; height: 100%;"></image></view>
+									<view class="list_icon" v-else><image src="../../static/workOverTime/btn-next@2x-1.png" style="width: 100%; height: 100%;"></image></view>
+									<view style="font-size: 16px;">{{item.name}}<text class="list_text">{{item.msg}}</text></view>
+								</view>
+							</scroll-view>
+						</view>
+					</uni-popup>
+				</view>
+				<view class="tab_icon">
+					<image src="../../static/workOverTime/btn_01.png" style="width: 100%; height: 100%;"></image>
+				</view>
+			</view>
+		</view>
+		
+		<!-- <view v-if="mode =='halfDay'">
+			<view>{{itemTitle}}</view>
+			<view class="input_put picker_put">
+				<date-time class="pickerDate" :border="false" v-model="dTime" type="halfDay"></date-time>
+				<view class="tab_icon">
+					<image src="../../static/workOverTime/btn_01.png" style="width: 100%; height: 100%;"></image>
+				</view>
+			</view>
+		</view> -->
+		
+		<view v-if="mode == 'textarea'">
+			<view>{{itemTitle}}</view>
+			<view class="input_put">
+				<textarea style="height: 160rpx; width: 100%;" v-model="itemVal" :placeholder="placeholder" />
+			</view>
+		</view>
+		
+		<uni-popup type="center" ref="popup">
+			<view class="warnTip">
+				<view>这段时间休息不需要请假!</view>
+				<view>如果排班有问题请联系管理员</view>
+				<view class="tipBtn" @tap="closePop">我知道了</view>
+			</view>
+		</uni-popup>
+		
+	</view>
+</template>
+
+<script>
+	import dateTime from "@/components/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue"
+	export default {
+		data(){
+			return {
+				itemVal:'',
+				dTime:'',
+				selectCur: '',
+				selCur: 0,
+				ddTime: ''
+			}
+		},
+		components:{
+			dateTime
+		},
+		watch:{
+			itemVal:function(newVal,oldVal){
+				this.$emit('inputVal',this.itemVal)
+			},
+			dTime:function(newVal,oldVal){
+				// let time = newVal.split(" ")[1]
+				// let hour = time.split(':')[0]
+				// let h =  parseInt(hour)
+				// if(h<9||h>18){
+				// 	this.$refs.popup.open()
+				// }
+				// console.log(this.dTime)
+				this.$emit('dTime',{'val':this.dTime,'type':this.pickerType})
+			}
+		},
+		props:{
+			itemTitle:{
+				type:String,
+				default:''
+			},
+			placeholder: {
+				type:String,
+				default:''
+			},
+			mode: {
+				type:String,
+				default:''
+			},
+			pickerType: {
+				type: Number,
+				default:0
+			},
+			arr: {
+				type: Array,
+				default: function(){
+					return []
+				}
+			},
+			dateType: {
+				type: String,
+				default: 'datetime'
+			}
+		},
+		methods:{
+			closePop(){
+				this.$refs.popup.close()
+			},
+			selectType(){
+				this.$refs.selectPopup.open()
+			},
+			selType(index){
+				this.selCur = index
+			},
+			selConfirm(){
+				this.$refs.selectPopup.close()
+				this.$emit('selectVal',this.selCur)
+			},
+			change(e){
+				this.dTime = e
+			}
+		}
+	}
+</script>
+
+<style scoped>
+	.item {
+		padding: 0 14pt;
+		background-color: #FFFFFF;
+		padding-bottom: 30rpx;
+		/* width: 100%; */
+	}
+	.input_put{
+		padding: 20rpx 0;
+		border-bottom: 2rpx solid #E5E5E5;
+		display: flex;
+		justify-content: space-between;
+	}
+	.pickerDate {
+		color: #999999;
+	}
+	.picker_put {
+		display: flex;
+		justify-content: space-between;
+	}
+	.tab_icon {
+		width: 36rpx;
+		height: 36rpx;
+	}
+	.warnTip {
+		background-color: #FFFFFF;
+		padding: 30rpx;
+		border-radius: 15rpx;
+	}
+	.tipBtn {
+		color: #007AFF;
+		width: 100%;
+		text-align: right;
+		margin-top: 20rpx;
+	}
+	.sel_content {
+		width: 100%;
+		background-color: #FFFFFF;
+		height: 600rpx;
+		z-index: 9999;
+	}
+	.header {
+		padding: 30rpx;
+		display: flex;
+		align-content: center;
+		justify-content: space-between;
+		border-bottom: 8px solid #F4F5F7;
+	}
+	.list-cell {
+		display: flex;
+		border-bottom: 1px solid #CCCCCC;
+		padding: 20rpx 0;
+		width: 90%;
+		margin: 0 auto;
+	}
+	.list_icon {
+		width: 40rpx;
+		height: 40rpx;
+		margin-right: 30rpx;
+	}
+	.list_text {
+		font-size: 14px;
+		color: #999999;
+		margin-left: 20rpx;
+	}
+</style>

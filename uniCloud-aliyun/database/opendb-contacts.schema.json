@@ -1,0 +1,86 @@
+{
+	"bsonType": "object",
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": false
+	},
+	"required": ["username", "mobile"],
+	"properties": {
+		"_id": {
+			"description": "存储文档 ID（用户 ID），系统自动生成"
+		},
+		"username": {
+			"bsonType": "string",
+			"title": "姓名",
+			"description": "姓名",
+			"order": 1,
+			"trim": "both"
+		},
+		"gender": {
+			"bsonType": "int",
+			"title": "性别",
+			"description": "用户性别：0 未知 1 男性 2 女性",
+			"order": 2,
+			"defaultValue": 0,
+			"enum": [{
+				"text": "未知",
+				"value": 0
+			}, {
+				"text": "男",
+				"value": 1
+			}, {
+				"text": "女",
+				"value": 2
+			}]
+		},
+		"department": {
+			"bsonType": "string",
+			"title": "部门",
+			"order": 3,
+			"description": "部门",
+			"trim": "both"
+		},
+		"post": {
+			"bsonType": "string",
+			"title": "职位",
+			"order": 4,
+			"description": "职位",
+			"trim": "both"
+		},
+		"mobile": {
+			"bsonType": "string",
+			"title": "电话",
+			"order": 5,
+			"description": "电话",
+			"pattern": "^\\+?[0-9-]{3,20}$",
+			"trim": "both"
+		},
+		"email": {
+			"bsonType": "string",
+			"format": "email",
+			"title": "邮箱",
+			"order": 6,
+			"description": "邮箱地址",
+			"trim": "both"
+		},
+		"comment": {
+			"bsonType": "string",
+			"title": "备注",
+			"order": 7,
+			"description": "备注",
+			"trim": "both",
+			"component": {
+				"name": "textarea"
+			}
+		},
+		"pic": {
+			"bsonType": "string",
+			"order": 8,
+			"title": "图片文件",
+			"description": "图片文件信息，包括文件名、url等",
+			"trim": "both"
+		}
+	}
+}

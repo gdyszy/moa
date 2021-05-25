@@ -1,0 +1,232 @@
+{
+
+	"pages": [ //pages数组中第一项表示应用启动页,
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "企业移动办公",
+				"navigationBarBackgroundColor": "#0088ff",
+				"navigationBarTextStyle": "white"
+			}
+		},{
+			"path": "pages/index/loading",
+			"style": {
+				"navigationBarTitleText": "启动页",
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "企业移动办公"
+			}
+		}, {
+			"path": "pages/reg/reg",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		}, {
+			"path": "pages/contactUs/list",
+			"style": {
+				"navigationBarTitleText": "联系我们"
+			}
+		}, {
+			"path": "pages/contactUs/add",
+			"style": {
+				"navigationBarTitleText": "新增/编辑"
+			}
+		}, {
+			"path": "uni_modules/uni-upgrade-center-app/pages/upgrade-popup",
+			"style": {
+				"disableScroll": true,
+				"app-plus": {
+					"backgroundColorTop": "transparent",
+					"background": "transparent",
+					"titleNView": false,
+					"scrollIndicator": false,
+					"popGesture": "none",
+					"animationType": "fade-in",
+					"animationDuration": 200
+
+				}
+			}
+		}, {
+			"path": "pages/pwd/update-password",
+			"style": {
+				"navigationBarTitleText": "修改密码"
+			}
+		}, {
+			"path": "pages/pwd/edit",
+			"style": {
+				"navigationBarTitleText": "编辑"
+			}
+		}, {
+			"path": "pages/user/user",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/seting/list",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}, {
+			"path": "pages/workOvertime/index",
+			"style": {
+				"navigationBarTitleText": "加班申请"
+			}
+		}, {
+			"path": "pages/formCommon/screen",
+			"style": {
+				"navigationBarTitleText": "筛选"
+			}
+		}, {
+			"path": "pages/notice/notice",
+			"style": {
+				"navigationBarTitleText": "消息通知"
+			}
+		}, {
+			"path": "pages/notice/notice_info",
+			"style": {
+				"navigationBarTitleText": "消息通知"
+			}
+		}, {
+			"path": "pages/sign/index",
+			"style": {
+				"navigationBarTitleText": "考勤打卡"
+			}
+		}, {
+			"path": "pages/sign/monthData",
+			"style": {
+				"navigationBarTitleText": "月数据"
+			}
+		}, {
+			"path": "pages/goOut/index",
+			"style": {
+				"navigationBarTitleText": "外出"
+			}
+		}, {
+			"path": "pages/leave/index",
+			"style": {
+				"navigationBarTitleText": "请假"
+			}
+		}, {
+			"path": "pages/travel/index",
+			"style": {
+				"navigationBarTitleText": "出差"
+			}
+		}, {
+			"path": "pages/patchCard/index",
+			"style": {
+				"navigationBarTitleText": "补卡申请"
+			}
+		}, {
+			"path": "pages/daily/index",
+			"style": {
+				"navigationBarTitleText": "日志"
+			}
+		},
+		{
+			"path": "pages/daily/detail",
+			"style": {
+				"navigationBarTitleText": "日志详情"
+			}
+
+		}, {
+			"path": "pages/dailyRecord/index",
+			"style": {
+				"navigationBarTitleText": "日志统计"
+			}
+
+		},
+		{
+			"path": "pages/formCommon/detail",
+			"style": {
+				"navigationBarTitleText": "申请详情"
+			}
+
+		},
+		{
+			"path": "pages/formCommon/adpot",
+			"style": {
+				"navigationBarTitleText": "审批"
+			}
+		},{
+			"path": "pages/contacts/list",
+			"style": {
+				"navigationBarTitleText": "通讯录"
+			}
+		}, {
+			"path": "pages/contacts/list2",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/contacts/detail",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		}, {
+			"path": "pages/contacts/add",
+			"style": {
+				"navigationBarTitleText": "新增"
+			}
+		}, {
+			"path": "pages/contacts/edit",
+			"style": {
+				"navigationBarTitleText": "修改个人资料"
+			}
+		}
+	],
+	"subPackages": [ {
+		"root": "pages/department",
+		"pages": [{
+			"path": "add",
+			"style": {
+				"navigationBarTitleText": "新增"
+			}
+		}, {
+			"path": "edit",
+			"style": {
+				"navigationBarTitleText": "编辑"
+			}
+		}, {
+			"path": "list",
+			"style": {
+				"navigationBarTitleText": "列表"
+			}
+		}, {
+			"path": "detail",
+			"style": {
+				"navigationBarTitleText": "详情"
+			}
+		}]
+	}],
+	"tabBar": {
+		"color": "#999",
+		"selectedColor": "#3B89F5",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"text": "首页",
+			"iconPath": "static/icon_home.png",
+			"selectedIconPath": "static/icon_home_sel.png"
+		}, {
+			"pagePath": "pages/contacts/list",
+			"text": "通讯录",
+			"iconPath": "static/icon_mailList.png",
+			"selectedIconPath": "static/icon_mailList_sel.png"
+		}, {
+			"pagePath": "pages/user/user",
+			"text": "我的",
+			"iconPath": "static/icon_user.png",
+			"selectedIconPath": "static/icon_user_sel.png"
+		}]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#fbf9fe"
+	}
+}

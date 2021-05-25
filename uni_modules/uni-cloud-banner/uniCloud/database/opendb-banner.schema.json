@@ -1,0 +1,81 @@
+{
+	"bsonType": "object",
+	"required": ["bannerfile"],
+	"permission": {
+		"delete": true,
+		"read": true,
+		"create": true,
+		"update": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"bannerfile": {
+			"bsonType": "file",
+			"fileMediaType": "image",
+			"title": "图片文件",
+			"description": "图片文件信息，包括文件名、url等"
+		},
+		"newsfl": {
+			"bsonType": "string",
+			"description": "",
+			"title": "新闻分类",
+			"trim": "both"
+		},
+		"create_date": {
+			"bsonType": "timestamp",
+			"description": "创建时间",
+			"forceDefaultValue": {
+				"$env": "now"
+			}
+		},
+		"content": {
+			"bsonType": "string",
+			"description": "",
+			"title": "内容",
+			"trim": "both"
+		},
+		"title": {
+			"bsonType": "string",
+			"description": "",
+			"maxLength": 20,
+			"title": "标题",
+			"trim": "both"
+		},
+		"countread": {
+			"bsonType": "int",
+			"description": "阅读数"
+		},
+		"weight": {
+			"bsonType": "int",
+			"description": "权重"
+		},
+		"status": {
+			"bsonType": "int",
+			"description": "状态：0 正常 1 隐藏",
+			"title": "状态",
+			"defaultValue": 0,
+			"enum": [{
+				"text": "正常",
+				"value": 0
+			}, {
+				"text": "隐藏",
+				"value": 1
+			}]
+		},
+		"tuijian": {
+			"bsonType": "int",
+			"description": "推荐：0 否 1 是",
+			"title": "推荐",
+			"defaultValue": 0,
+			"enum": [{
+				"text": "否",
+				"value": 0
+			}, {
+				"text": "是",
+				"value": 1
+			}]
+		}
+	}
+}
