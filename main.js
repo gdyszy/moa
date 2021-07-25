@@ -14,7 +14,18 @@ const app = new Vue({
 	...App
 })
 app.$mount()
-
+//统一提示
+global.show_nativeUI_toast = function(msg, icontype = 'success'){
+	const iconTypeUrl = {
+	    error: '/static/toast-image/warn.png',
+	    success: '/static/toast-image/success.png',
+	    warn: '/static/toast-image/warn.png'
+	}
+	uni.showToast({
+	    title: msg,
+		image: iconTypeUrl[icontype]
+	})
+}
 //判断token 是否有效
 Vue.prototype.checkToken = function(callback) {
 	let uniIdToken = uni.getStorageSync('uni_id_token')
@@ -34,17 +45,23 @@ Vue.prototype.checkToken = function(callback) {
 						icon:'none'
 					})
 					const value = uni.getStorageSync('launchFlag');
+					// #ifdef APP-PLUS
 					if (value) {
 						// launchFlag=true直接跳转到首页
-						uni.redirectTo({
+						uni.reLaunch({
 							url: '/pages/login/login'
 						});
 					} else {
-						uni.redirectTo({
+						uni.reLaunch({
 							url: '/pages/index/loading'
 						});
 					}
-					
+					// #endif
+					// #ifdef  MP||H5
+					uni.reLaunch({
+						url: '/pages/login/login'
+					});
+					// #endif
 				}
 			},
 			fail(e) {
@@ -57,16 +74,23 @@ Vue.prototype.checkToken = function(callback) {
 	}else{
 		callback(false)
 		const value = uni.getStorageSync('launchFlag');
+		// #ifdef APP-PLUS
 		if (value) {
 			// launchFlag=true直接跳转到首页
-			uni.redirectTo({
+			uni.reLaunch({
 				url: '/pages/login/login'
 			});
 		} else {
-			uni.redirectTo({
+			uni.reLaunch({
 				url: '/pages/index/loading'
 			});
 		}
+		// #endif
+		// #ifdef  MP||H5
+		uni.reLaunch({
+			url: '/pages/login/login'
+		});
+		// #endif
 	}
 	
 };

@@ -37,7 +37,6 @@
 			},
 			define(){
 				let a = this.listItem[this.cur].sid
-				console.log(a)
 				let obj = {
 					sid: a,
 					tabIndex: 1
@@ -90,11 +89,16 @@
 		background-color: #F7F8FA;;
 	}
 	.bottom {
-		position: fixed;
-		bottom: 40rpx;
-		left: 0;
-		right: 0;
-		display: flex;
+	border-top: 1px solid #ccc;
+	position: fixed;
+	height: 140rpx;
+	z-index: 1400;
+	bottom: 0;
+	background-color: #fff;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	}
 	.bottom button {
 		width: 45%;

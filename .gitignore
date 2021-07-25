@@ -1,2 +1,8 @@
 unpackage
 .hbuilderx
+/uniCloud-aliyun/cloudfunctions/uni-admin/node_modules
+/uniCloud-aliyun/cloudfunctions/uni-admin/package-lock.json
+/uni_modules/uni-id/uniCloud/cloudfunctions/common/uni-id/package-lock.json
+/uni_modules/uni-id/uniCloud/cloudfunctions/common/uni-id/node_modules
+/uniCloud-aliyun/cloudfunctions/user-center/node_modules
+/uniCloud-aliyun/cloudfunctions/user-center/node_modules/package-lock.json

@@ -7,9 +7,12 @@
 	export default {
 		onLaunch: function() {
 			console.log('App Launch');
+			// #ifdef APP-PLUS
 			setTimeout(() => {
 				plus.navigator.closeSplashscreen();
 			}, 3000)
+			// #endif
+			
 			let uniIdToken = uni.getStorageSync('uni_id_token')
 			if (uniIdToken) {
 				this.login(uni.getStorageSync('username'))

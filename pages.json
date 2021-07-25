@@ -6,9 +6,13 @@
 			"style": {
 				"navigationBarTitleText": "企业移动办公",
 				"navigationBarBackgroundColor": "#0088ff",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": true,
+				"h5": {
+					"titleNView": false
+				}
 			}
-		},{
+		}, {
 			"path": "pages/index/loading",
 			"style": {
 				"navigationBarTitleText": "启动页",
@@ -72,16 +76,6 @@
 				"navigationBarTitleText": "我的"
 			}
 		}, {
-			"path": "pages/workOvertime/index",
-			"style": {
-				"navigationBarTitleText": "加班申请"
-			}
-		}, {
-			"path": "pages/formCommon/screen",
-			"style": {
-				"navigationBarTitleText": "筛选"
-			}
-		}, {
 			"path": "pages/notice/notice",
 			"style": {
 				"navigationBarTitleText": "消息通知"
@@ -92,117 +86,184 @@
 				"navigationBarTitleText": "消息通知"
 			}
 		}, {
-			"path": "pages/sign/index",
-			"style": {
-				"navigationBarTitleText": "考勤打卡"
-			}
-		}, {
-			"path": "pages/sign/monthData",
-			"style": {
-				"navigationBarTitleText": "月数据"
-			}
-		}, {
-			"path": "pages/goOut/index",
-			"style": {
-				"navigationBarTitleText": "外出"
-			}
-		}, {
-			"path": "pages/leave/index",
-			"style": {
-				"navigationBarTitleText": "请假"
-			}
-		}, {
-			"path": "pages/travel/index",
-			"style": {
-				"navigationBarTitleText": "出差"
-			}
-		}, {
-			"path": "pages/patchCard/index",
-			"style": {
-				"navigationBarTitleText": "补卡申请"
-			}
-		}, {
-			"path": "pages/daily/index",
-			"style": {
-				"navigationBarTitleText": "日志"
-			}
-		},
-		{
-			"path": "pages/daily/detail",
-			"style": {
-				"navigationBarTitleText": "日志详情"
-			}
-
-		}, {
-			"path": "pages/dailyRecord/index",
-			"style": {
-				"navigationBarTitleText": "日志统计"
-			}
-
-		},
-		{
-			"path": "pages/formCommon/detail",
-			"style": {
-				"navigationBarTitleText": "申请详情"
-			}
-
-		},
-		{
-			"path": "pages/formCommon/adpot",
-			"style": {
-				"navigationBarTitleText": "审批"
-			}
-		},{
 			"path": "pages/contacts/list",
 			"style": {
 				"navigationBarTitleText": "通讯录"
 			}
-		}, {
-			"path": "pages/contacts/list2",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		}, {
-			"path": "pages/contacts/detail",
-			"style": {
-				"navigationBarTitleText": "个人信息"
-			}
-		}, {
-			"path": "pages/contacts/add",
-			"style": {
-				"navigationBarTitleText": "新增"
-			}
-		}, {
-			"path": "pages/contacts/edit",
-			"style": {
-				"navigationBarTitleText": "修改个人资料"
-			}
 		}
 	],
-	"subPackages": [ {
-		"root": "pages/department",
-		"pages": [{
-			"path": "add",
-			"style": {
-				"navigationBarTitleText": "新增"
-			}
+	"subPackages": [{
+			"root": "pages/department",
+			"pages": [{
+				"path": "add",
+				"style": {
+					"navigationBarTitleText": "新增"
+				}
+			}, {
+				"path": "edit",
+				"style": {
+					"navigationBarTitleText": "编辑"
+				}
+			}, {
+				"path": "list",
+				"style": {
+					"navigationBarTitleText": "列表"
+				}
+			}, {
+				"path": "detail",
+				"style": {
+					"navigationBarTitleText": "详情"
+				}
+			}]
 		}, {
-			"path": "edit",
-			"style": {
-				"navigationBarTitleText": "编辑"
-			}
+			"root": "pages/gongwen",
+			"pages": [{
+					"path": "index1",
+					"style": {
+						"navigationBarTitleText": "公文流程"
+					}
+				},
+				{
+					"path": "index",
+					"style": {
+						"navigationBarTitleText": "发起公文",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "detail",
+					"style": {
+						"navigationBarTitleText": "公文详情"
+					}
+				}
+			]
 		}, {
-			"path": "list",
-			"style": {
-				"navigationBarTitleText": "列表"
-			}
+			"root": "pages/daiban",
+			"pages": [{
+					"path": "index",
+					"style": {
+						"navigationBarTitleText": "工作通知",
+						"enablePullDownRefresh": true
+					}
+				},
+				{
+					"path": "detail",
+					"style": {
+						"navigationBarTitleText": "公文详情"
+					}
+				},
+				{
+					"path": "adpot",
+					"style": {
+						"navigationBarTitleText": "审批"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/formCommon",
+			"pages": [{
+					"path": "screen",
+					"style": {
+						"navigationBarTitleText": "筛选"
+					}
+				},
+				{
+					"path": "detail",
+					"style": {
+						"navigationBarTitleText": "申请详情"
+					}
+
+				},
+				{
+					"path": "adpot",
+					"style": {
+						"navigationBarTitleText": "审批"
+					}
+				}
+			]
 		}, {
-			"path": "detail",
-			"style": {
-				"navigationBarTitleText": "详情"
-			}
-		}]
-	}],
+			"root": "pagesContacts/contacts",
+			"pages": [{
+				"path": "list2",
+				"style": {
+					"navigationStyle": "custom"
+				}
+			}, {
+				"path": "detail",
+				"style": {
+					"navigationBarTitleText": "个人信息"
+				}
+			}, {
+				"path": "add",
+				"style": {
+					"navigationBarTitleText": "新增"
+				}
+			}, {
+				"path": "edit",
+				"style": {
+					"navigationBarTitleText": "修改个人资料"
+				}
+			}]
+		}, {
+			"root": "pagesOA",
+			"pages": [{
+					"path": "workOvertime/index",
+					"style": {
+						"navigationBarTitleText": "加班申请"
+					}
+				}, {
+					"path": "sign/index",
+					"style": {
+						"navigationBarTitleText": "考勤打卡"
+					}
+				}, {
+					"path": "sign/monthData",
+					"style": {
+						"navigationBarTitleText": "月数据"
+					}
+				}, {
+					"path": "goOut/index",
+					"style": {
+						"navigationBarTitleText": "外出"
+					}
+				}, {
+					"path": "leave/index",
+					"style": {
+						"navigationBarTitleText": "请假"
+					}
+				}, {
+					"path": "travel/index",
+					"style": {
+						"navigationBarTitleText": "出差"
+					}
+				}, {
+					"path": "patchCard/index",
+					"style": {
+						"navigationBarTitleText": "补卡申请"
+					}
+				}, {
+					"path": "daily/index",
+					"style": {
+						"navigationBarTitleText": "日志"
+					}
+				},
+				{
+					"path": "daily/detail",
+					"style": {
+						"navigationBarTitleText": "日志详情"
+					}
+
+				}, {
+					"path": "dailyRecord/index",
+					"style": {
+						"navigationBarTitleText": "日志统计"
+					}
+
+				}
+			]
+		}
+	],
 	"tabBar": {
 		"color": "#999",
 		"selectedColor": "#3B89F5",

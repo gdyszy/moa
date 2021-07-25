@@ -127,7 +127,7 @@
 		display: flex;
 	}
 	.bottom button {
-		width: 45%;
+		width: 44%;
 		height: 90rpx;
 		line-height: 90rpx;
 		color: #333333;

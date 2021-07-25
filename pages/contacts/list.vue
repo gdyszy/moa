@@ -134,7 +134,7 @@
 					query = ''
 				}
 				uni.navigateTo({
-					url: './list2?search=true&query=' + query
+					url: '/pagesContacts/contacts/list2?search=true&query=' + query
 				})
 			},
 			loadData(clear = true) {
@@ -143,7 +143,7 @@
 				})
 			},
 			depClick(department_id, name, percount, children) {
-				let url = './list2?department_id=' + department_id + '&name=' + name + '&percount=' + percount;
+				let url = '/pagesContacts/contacts/list2?department_id=' + department_id + '&name=' + name + '&percount=' + percount;
 				if (children != '') {
 					url = url + '&children=true'
 				}
@@ -154,13 +154,13 @@
 			},
 			handleItemClick(id) {
 				uni.navigateTo({
-					url: './detail?id=' + id
+					url: '/pagesContacts/contacts/detail?id=' + id
 				})
 			},
 			fabClick() {
 				// 打开新增页面
 				uni.navigateTo({
-					url: './add',
+					url: '/pagesContacts/contacts/add',
 					events: {
 						// 监听新增数据成功后, 刷新当前页面数据
 						refreshData: () => {

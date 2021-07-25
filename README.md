@@ -1,7 +1,10 @@
 <h1> 企业移动办公系统 </h1>
 
 # 产品简介
-企业移动办公系统，是基于 uniCloud + uni-app 开发的办公系统。
+这是一套基于 uniCloud + uni-app 开发的移动办公系统，分为用户端和管理后台两个项目，本插件为用户端项目，管理后台项目另见[https://ext.dcloud.net.cn/plugin?id=5036](https://ext.dcloud.net.cn/plugin?id=5036)。
+
+注意：本插件的云函数依赖管理后台插件，故需先下载[移动办公-管理后台](https://ext.dcloud.net.cn/plugin?id=5036)插件，然后将本项目的服务空间关联到管理后台项目上。
+
 
 # 应用场景
 1.领导长期外出，可通过移动办公随时了解企业的运营情况，能够对一些重大事项，做出及时的决策；
@@ -17,64 +20,66 @@
 
 产品前端采用uni-App开发，实现App（iOS，Android）、H5、微信小程序多平台部署运营。
 
+# 项目构成
+前端基于uni-app开发，后端基于[uniCloud](https://uniapp.dcloud.net.cn/uniCloud/README)开发
 
-# 功能列表
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_55ad7d536139643da6600b90438b83cc_r.jpg)
+整个移动办公系统，有2个项目，复用同一个uniCloud空间。一个项目是用户端，另一个项目是管理端。
 
-# 管理后台效果图
+本插件即为App端，面向手机用户使用，功能包括：
+OA审批、通知公告、考勤打卡、日报、通讯录和我的帐号管理共六大模块。
+
+管理端,面向单位的IT管理人员使用，设置组织架构，考勤管理配置，流程配置等。
+
+管理端是另外插件，另见： [https://ext.dcloud.net.cn/plugin?id=5036](https://ext.dcloud.net.cn/plugin?id=5036)
+
+
+
+# 整体功能列表
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_bfb43871083d3ba2e5ae70764fd87d15_r.png)
+
+# 用户端效果图
 #### 首页
-![首页](https://wiki.yszyun.com/uploads/moa-admin/images/m_c44e72916ee2e9528a4561a13814acd8_r.png "首页")
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_f09fc2d26d4bdfcb79ea5e27f8fd56d3_r.jpg)
 
-#### 流程列表
-![流程列表](https://wiki.yszyun.com/uploads/moa-admin/images/m_cd010ed8bacf67ff795e945211358dc4_r.png "流程列表")
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_679421fe5989711ecf16f5ac3ed205a0_r.jpg)
 
-#### 基础管理-组织架构
-![基础管理-组织架构](https://wiki.yszyun.com/uploads/moa-admin/images/m_aa5434467e17329df72d68649a540cc4_r.png "基础管理-组织架构")
-#### 基础管理-组织架构-选择部门
-![基础管理-组织架构-选择部门](https://wiki.yszyun.com/uploads/moa-admin/images/m_01030db4734d4226b20c4b389c1bb1df_r.png "基础管理-组织架构-选择部门")
+### 公文管理
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_30e2b6c4412d0aff122fa092f22ba539_r.jpg)
 
-#### 考勤管理-签到方案考勤管理-签到方案
-![考勤管理-签到方案](https://wiki.yszyun.com/uploads/moa-admin/images/m_59a9bca0958dbdbdfbb6272f233c39c2_r.png "考勤管理-签到方案")
-#### 考勤管理-考勤周期
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_64775a8ab1c7f61f6122cab6ac79ceb4_r.png)
-#### 通知管理-通知列表
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_db0dd70b595713dba46ca70552f9430a_r.png)
-
-
-前端APP效果图
-#### 首页
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_a459f4e267d8018c39280174960e56a3_r.png)
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_bf1f6fff6355002970221d4873101cb4_r.jpg)
 
 #### 加班申请
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_01b07ce8af9ab6bdb22eeea7c27565eb_r.png)
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_778770ebb5a6e06973b4b12bb9775bc9_r.jpg)
+
 #### 考勤打卡
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_4a5a0121001029caeae039b04e3739f9_r.png)
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_25398624af26d648f3a97ff82303b63b_r.jpg)
+
 #### 打卡记录
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_642372f44f5b643eaee98b450084d6e2_r.png)
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_9c268a5d28edf12ddd3283ddd215e709_r.jpg)
 
 #### 日志刷选
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_8f23d705107916806929f1a0b4dd5bdc_r.png)
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_48d008e4b031187bc54ff6489fccb449_r.jpg)
 
 #### 日志统计
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_3ab790ae228fdc5a7f4b494748a4cfa0_r.png)
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_8ac46525f8adddbace3a1a94c6048416_r.jpg)
+
 
 #### 通讯录
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_9e59f15ff3137b9d2e8046428c878e2c_r.png)
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_e7d206fe67cc7a26b54ce5bd98e218ee_r.jpg)
 
 #### 我的
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_8c38464bfccbed393f610b95441f037f_r.png)
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_e1d6b94bdce262c179f67f75b7a22a3d_r.jpg)
 
 
 # 产品演示
 
-管理后台 [https://moa.yszyun.com/admin/#/pages/login/login](https://moa.yszyun.com/admin/#/pages/login/login)
-
-账号：admin1
-密码：123456
-
-前端 [https://moa.yszyun.com/#/pages/login/login](https://moa.yszyun.com/#/pages/login/login)
+用户端H5版本 [https://moa.yszyun.com/#/pages/login/login](https://moa.yszyun.com/#/pages/login/login)
 账号：tianlin
 密码：123456
+
+用户端小程序版本
+
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_36bd7bf15092660dc61413ae5052b432_r.jpg)
 
 
 # 目录结构
@@ -88,32 +93,22 @@
 ├── pages                       # 页面
 │   │── index                   # 首页
 │   └── login                   # 登录页
+├── pagesOA                     # 考勤类页面
+├── pagesContacts               # 通讯录页面
 ├── static
-├── store                       # vuex
-├── windows
-│   │── component               # 项目中使用的组件
-│   │── leftWindow.vue          # 左侧窗口（菜单栏）
-│   └── topWindow.vue           # 顶部窗口（导航栏）
-├── admin.config.js             # 系统配置（配置导航，菜单等）
 ├── App.vue
 ├── main.js
 ├── mainfest.json
 ├── pages.json
-├── postcss.config.js           # postcss 配置（浏览器兼容性）
 └── uni.scss
 ```
-> 基于 uni-app，uniCloud 的 admin 管理项目模板。[文档](https://uniapp.dcloud.io/uniCloud/admin)
 
-## 需要导入 管理后台插件，并初始化云函数，初始化云数据库。
-插件地址 [企业移动办公[后台管理系统]](https://ext.dcloud.net.cn/plugin?id=5036)
 
-* 创建或选择云服务空间,进入manifest.json可视化重新获取appid
+* 配置appid 与管理后台的一致，将本项目的服务空间关联到管理后台项目上。
 * 右键上传cloudfunctions-aliyun文件夹下所有云函数(云函数上传完后请进云开发控制台将函数执行内存改至最大)
-* 选择/cloudfunctions-aliyun/db_init.json右键初始化云数据库，再执行右键初始化云数据库 uni-upgrade-center:uni-module
+* 选择/cloudfunctions-aliyun/db_init.json右键初始化云数据库
 ![](https://wiki.yszyun.com/uploads/moa-admin/images/m_895636936e563a949911d1e2d2121531_r.jpg)
 * 使用HBuilderx运行到浏览器
-* 访问管理后台，如无管理员账号，请先创建管理员
-* uni-upgrade-center - Admin 使用说明参考 /uni_modules/uni-upgrade-center/readme.md
 
 ###### 移动办公操作手册
 [https://wiki.yszyun.com/docs/moa-unicloud/moa-unicloud-1ctudvht2ovdi](https://wiki.yszyun.com/docs/moa-unicloud/moa-unicloud-1ctudvht2ovdi)

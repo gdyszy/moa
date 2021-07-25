@@ -24,11 +24,14 @@
 					<text class="list-text">清理缓存</text>
 					<text class="rlist-text"></text>
 				</view>
+				<!-- #ifdef APP-PLUS -->
 				<view class="center-list-item border-bottom" @click="goto('upgrade')">
 					<image class="slot-image2" src="/static/img/ico_jcgx_@3x.png" mode="widthFix"></image>
 					<text class="list-text">检查更新</text>
 					<text class="rlist-text">当前为最新版本</text>
 				</view>
+				<!-- #endif -->
+				
 				
 				<view class="center-list-item" @click="goto('contactUs')">
 					<image class="slot-image2" src="/static/img/ico_lxwm_@3x.png" mode="widthFix"></image>
@@ -122,7 +125,12 @@
 				this.$refs.popupDialogclear.open()
 			},
 			dialogConfirmclear(done) {
-				uni.clearStorageSync();
+				//清理缓存，只清理特定数据
+				uni.removeStorageSync('uni_deviceId')
+				uni.removeStorageSync('launchFlag')
+				uni.removeStorageSync('uni-needCaptcha')
+				uni.removeStorageSync('login_type')
+				uni.removeStorageSync('uni_id_has_pwd')
 				done();
 				uni.showToast({
 					title: "清除成功"

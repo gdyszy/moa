@@ -1,20 +1,26 @@
 <template>
-	<view class="page">
-		<uni-forms class="ulist" :style="{height: positionTop + 'px'}" :border="true" ref="form" :value="formData" validate-trigger="submit" err-show-type="toast">
+	<view class="uni-container">
+		<uni-forms class="ulist" :border="true" ref="form" :value="formData" validate-trigger="submit"
+			err-show-type="toast">
 			<uni-forms-item name="nickname" labelPosition="top" label="姓名" :labclass="0">
 				<uni-easyinput :inputBorder="false" placeholder="请填写姓名" v-model="formData.nickname" trim="both" />
-			</uni-forms-item><uni-forms-item name="mobile" labelPosition="top" label="联系电话" :labclass="0">
-				<uni-easyinput :inputBorder="false" placeholder="请填写联系电话" maxlength="11" v-model="formData.mobile" trim="both" />
+			</uni-forms-item>
+			<uni-forms-item name="mobile" labelPosition="top" label="联系电话" :labclass="0">
+				<uni-easyinput :inputBorder="false" placeholder="请填写联系电话" maxlength="11" v-model="formData.mobile"
+					trim="both" />
 			</uni-forms-item>
 			<uni-forms-item name="email" labelPosition="top" label="邮箱" :labclass="0">
 				<uni-easyinput :inputBorder="false" placeholder="请填写邮箱" v-model="formData.email" trim="both" />
 			</uni-forms-item>
-			<view class="oauth-row" v-bind:style="{top: positionTop + 'px'}">
+			<view class="item_border"></view>
+			<!-- <view class="oauth-row" v-bind:style="{top: positionTop + 'px'}">
 				<button type="primary" class="uni-button uni-button-full" @click="submit">提交</button>
-			</view>
-			<uni-forms-item labelPosition="top" label="" name="" labelWidth="85">
-			</uni-forms-item>
+			</view> -->
+
 		</uni-forms>
+		<view class="status_bar">
+		  <button type="default" class="submit" @click="submit">提交</button>
+		</view>
 	</view>
 </template>
 
@@ -39,9 +45,9 @@
 	export default {
 		data() {
 			return {
-				positionTop: 0,
+				positionTop: 480,
 				formData: {
-					"nickname":"",
+					"nickname": "",
 					"mobile": "",
 					"email": ""
 				},
@@ -130,13 +136,18 @@
 </script>
 
 <style>
-	
-	.ulist{
+	.uni-container {
+		width: 100%;
+		padding: 15px;
+	}
+
+	.ulist {
 		background-color: #FFFFFF;
 		margin-top: 8px;
 		padding-left: 26rpx;
 		padding-right: 26rpx;
 		padding-bottom: 13.5px;
+		z-index: 99999;
 	}
 
 	.uni-button-group {
@@ -152,16 +163,17 @@
 		line-height: 1;
 		margin: 0 28rpx;
 		background: #3B89F5;
-		color: #000000;
+		color: #FFFFFF;
 		font-family: PingFang SC;
 		font-weight: 500;
 		font-size: 15px;
 		overflow: initial;
 	}
-	
+
 	.uni-button-full {
 		width: 100%;
 	}
+
 	.oauth-row {
 		display: flex;
 		flex-direction: row;
@@ -172,5 +184,41 @@
 		top: 0;
 		left: 0;
 		width: 100%;
+	}
+
+	.item_border {
+		margin-bottom: 0;
+		padding: 10px 0;
+		border-top: 1px #eee solid;
+	}
+	.status_bar {
+		border-top: 1px solid #ccc;
+		margin-left: -15px;
+		position: fixed;
+		height: 140rpx;
+		z-index: 1;
+		bottom: 0;
+		background-color: #fff;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.submit {
+		display: flex;
+		justify-content: center;
+		left: 0;
+		right: 0;
+		color: #ffffff;
+		width: 90%;
+		background-color: #3b88f5;
+		line-height: 90rpx;
+		font-size: 12pt;
+	}
+	
+	button[type=default] {
+		color: #fff;
+		background-color: #3b88f5;
 	}
 </style>

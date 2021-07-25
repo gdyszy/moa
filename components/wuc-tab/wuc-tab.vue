@@ -104,6 +104,12 @@
 				default: false
 			}
 		},
+		watch:{
+			seldate(val){
+				console.log(val)
+				// this.seldate = val
+			}
+		},
 		methods: {
 			tabSelect(index, e) {
 				if (this.currentTab === index) return false;

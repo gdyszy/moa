@@ -5,15 +5,15 @@ exports.main = async (event, context) => {
 		var data = event.data
 		var name = event.name
 		if (name == "bannerGet") {
-			const res = db.collection('opendb-banner').where({"status":true}).get()
+			const res = db.collection('opendb-banner').where({"status":true}).orderBy("create_date", "desc").get()
 			return res
 		}
 		else if (name == "noticeGet") {
-			const res = db.collection('opendb-news-articles').where({"article_status":1}).get()
+			const res = db.collection('opendb-news-articles').where({"article_status":1}).orderBy("publish_date", "desc").get()
 			return res
 		}
 		else if (name == "noticeInfoGet") {
-			const res = db.collection('opendb-news-articles').where({_id:data }).get()
+			const res = db.collection('opendb-news-articles').where({_id:data }).orderBy("publish_date", "desc").get()
 			return res
 		}
 		else {

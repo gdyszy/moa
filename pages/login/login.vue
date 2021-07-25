@@ -36,7 +36,7 @@
 				<m-input type="text"  clearable v-model="username" placeholder="请输入账号"></m-input>
 			</view>
 			<view class="input-row border">
-				<m-input type="password" displayable v-model="password" placeholder="请输入密码"></m-input>
+				<m-input type="password"  displayable v-model="password" placeholder="请输入密码"></m-input>
 			</view>
 			<view v-if="needCaptcha" class="input-row border">
 				<text class="title">验证码：</text>
@@ -342,7 +342,6 @@
 					},
 					success: (e) => {
 
-						console.log('login success', e);
 
 						if (e.result.code == 0) {
 							const username = e.result.username || '新用户'
@@ -631,8 +630,14 @@
 	}
 
 	.imgv {
+
 		width: 100%;
-		padding: 56rpx 316rpx 0 314rpx;
+	
+		margin: 0 auto;
+		display: flex;
+		justify-self: center;
+		align-items: center;
+		margin: 80rpx 0;
 	}
 
 	.logo-img {
@@ -640,14 +645,16 @@
 		height: 120rpx;
 		display: inline-block;
 		border-radius: 10px;
+		margin: 0 auto;
 	}
 
 	.input-group {
 		background-color: #ffffff;
-		margin-top: 70rpx;
+		
 		position: relative;
 		width: 610rpx;
-		padding: 0 70rpx 53rpx 70rpx;
+	
+		margin: 0 auto;
 	}
 
 	.input-group::before {
@@ -671,7 +678,7 @@
 		content: '';
 		-webkit-transform: scaleY(.5);
 		transform: scaleY(.5);
-		background-color: #fff;
+		background-color: #c8c7cc;
 	}
 
 	.tit1 {
@@ -696,10 +703,12 @@
 	}
 
 	.input-row {
+		margin: 0 auto;
 		display: flex;
 		flex-direction: row;
 		position: relative;
 		width: 610rpx;
+		max-width: 460px;
 		height: 51.5px;
 		line-height: 40px;
 	}
@@ -722,38 +731,45 @@
 	}
 
 	button.primary {
+		margin-top: 30rpx;
+		max-width: 460px;
 		background: #3B88F5;
 		width: 610rpx;
-		height: 98rpx;
 		color: #FFFFFF;
 		font-family: PingFang SC;
 		font-weight: 500;
 		font-size: 15px;
-		line-height: normal;
+		line-height: 45px;
+		max-height: 45px;
 		letter-spacing: 0px;
 		text-align: center;
-		padding-top: 28rpx;
+		
 	}
 
 	button.primarywx {
+		margin-top: 30rpx;
+
+		max-width: 460px;
 		background: #53B821;
 		width: 610rpx;
-		height: 98rpx;
 		color: #FFFFFF;
 		font-family: PingFang SC;
 		font-weight: medium;
 		font-size: 15px;
-		line-height: normal;
+		line-height: 45px;
+		max-height: 45px;
 		letter-spacing: 0px;
 		text-align: center;
-		padding-top: 28rpx;
+	
 	}
 
 	.action-row {
+		padding-left: 350rpx;
+		margin: 0 auto;
 		display: flex;
 		flex-direction: row;
 		margin-left: auto;
-		margin-right: 70rpx;
+		
 	}
 
 	.action-row navigator {

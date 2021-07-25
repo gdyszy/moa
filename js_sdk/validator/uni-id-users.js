@@ -37,7 +37,7 @@ const validator = {
   "department_id": {
     "rules": [
       {
-        "format": "array"
+        "format": "string"
       }
     ],
     "label": "部门"
