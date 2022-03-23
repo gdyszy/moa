@@ -35,7 +35,7 @@ OA审批、通知公告、考勤打卡、日报、通讯录和我的帐号管理
 
 
 # 整体功能列表
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_bfb43871083d3ba2e5ae70764fd87d15_r.png)
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_898f6c720d8a5cd6ea357f8a6453f3ab_r.jpg)
 
 # 用户端效果图
 #### 首页
