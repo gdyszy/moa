@@ -43,7 +43,6 @@
 				this.$refs.checkDetail.getList()
 			},
 			resvise(e){
-				console.log(123)
 				this.TabCur = e.tabIndex
 				this.id = e.id
 			}

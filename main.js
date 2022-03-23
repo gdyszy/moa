@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App'
 
 import store from './store'
+import loading from "@/pages/selectUser/components/Loading.vue";
 
 Vue.config.productionTip = false
 
@@ -94,6 +95,34 @@ Vue.prototype.checkToken = function(callback) {
 	}
 	
 };
+
+Vue.prototype.carColor = function(e){
+	let color =  [{
+        "text": "黑色",
+        "value": 0
+      }, {
+        "text": "银色",
+        "value": 1
+      }, {
+        "text": "白色",
+        "value": 2
+      }, {
+        "text": "红色",
+        "value": 3
+      }, {
+        "text": "黄色",
+        "value": 4
+      }, {
+        "text": "橙色",
+        "value": 5
+      }, {
+        "text": "蓝色",
+        "value": 6
+      }]
+	  	return color[e].text
+}
+
+Vue.component('loading',loading)
 
 //判断昵称是否存在
 Vue.prototype.checkNickname = function(callback) {

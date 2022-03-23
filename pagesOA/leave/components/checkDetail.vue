@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view v-for="(item,index) in list">
+		<view v-for="(item,index) in list" :key='index'>
 			<recordItem :listData="item" @checkDetail="checkDetail" :typeFrom="typeFrom"></recordItem>
 		</view>
 		<view class="tips">已显示全部</view>
@@ -26,27 +26,19 @@
 			}
 		},
 		created() {
-			this.getList()
+			this.getList();
 		},
 		props:{
 			refresh: {
 				type: Number,
 				default: 0
-			},
-			filterIndex: {
-				type: Number,
-				default: 0
 			}
 		},
 		watch:{
-			refresh(newVal,oldVal){
+			refresh(newVal){
 				if(newVal == 1){
 					this.getList()
 				}
-			},
-			filterIndex(newVal,oldVal){
-				this.formData.result = newVal
-				this.getList()
 			}
 		},
 		methods:{
@@ -55,19 +47,29 @@
 					url:`/pages/formCommon/detail?id=${e.id}&type=${this.typeFrom}`
 				})
 			},
-			getList(){
-				let that = this;
-				that.loading = true
-				uniCloud.callFunction({
+			async getList(){
+				let res = await uniCloud.callFunction({
 					name: 'flow',
 					data: {
 						name: 'flowGetList',
 						data: this.formData
 					}
-				}).then((res) => {
-					that.list = res.result.data
 				})
+				this.list = res.result.data;
 			},
+			async statsToSort(sid){
+				let res = await uniCloud.callFunction({
+					name: 'flow',
+					data: {
+						name: 'flowGetList',
+						data: this.formData
+					}
+				})
+				this.list = res.result.data;
+				this.list = this.list.filter(item=>{
+					return item.result == sid
+				})
+			}
 		}
 	}
 </script>

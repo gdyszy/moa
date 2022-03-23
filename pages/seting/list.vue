@@ -101,12 +101,14 @@
 				})
 			},
 			chooseAndUploadFile(file) {
-				uni.showLoading({
-					title: '头像上传中...'
-				})
 				uniCloud.chooseAndUploadFile({
 					type: 'image',
 					onChooseFile: (res) => {
+						if(res.tempFilePaths){
+										uni.showLoading({
+										  title: "头像上传中...",
+										});  
+						}
 						const processAll = []
 						for (let i = 0; i < res.tempFiles.length; i++) {
 							processAll.push(this.cropImg(res.tempFiles[i]))
@@ -127,10 +129,8 @@
 						})
 					}
 				}).then(res => {
-					console.log(res.tempFiles[0].url)
 					this.submitForm(res.tempFiles[0].url)
 				}).catch((err) => {
-					console.log(err);
 				}).finally(() => {
 					uni.hideLoading()
 				})

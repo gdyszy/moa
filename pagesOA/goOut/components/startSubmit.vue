@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<from-item ref="item1" mode="input" itemTitle="外出事由" placeholder="请输入出差事由" @inputVal="inputVal" />
+		<from-item ref="item1" mode="input" itemTitle="外出事由" placeholder="请输入外出事由" @inputVal="inputVal" />
 		<from-item ref="item2" mode="picker" itemTitle="开始时间" @dTime="dTime"  :pickerType="0" />
 		<from-item ref="item3" mode="picker" itemTitle="结束时间" @dTime="dTime" :pickerType="1" />
 		<from-item ref="item4" mode="input" itemTitle="外出时长" placeholder="请填写" @inputVal="hourVal" />

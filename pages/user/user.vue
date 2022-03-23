@@ -19,12 +19,13 @@
 					<text class="list-text">账号管理</text>
 					<text class="navigat-arrow">&#xe65e;</text>
 				</view>
+				<!-- #ifdef APP-PLUS -->
 				<view class="center-list-item border-bottom" @click="clear()">
 					<image class="slot-image2" src="/static/img/ico_qlhc_@3x.png" mode="widthFix"></image>
 					<text class="list-text">清理缓存</text>
 					<text class="rlist-text"></text>
 				</view>
-				<!-- #ifdef APP-PLUS -->
+				
 				<view class="center-list-item border-bottom" @click="goto('upgrade')">
 					<image class="slot-image2" src="/static/img/ico_jcgx_@3x.png" mode="widthFix"></image>
 					<text class="list-text">检查更新</text>
@@ -33,9 +34,15 @@
 				<!-- #endif -->
 				
 				
-				<view class="center-list-item" @click="goto('contactUs')">
+				<view class="center-list-item border-bottom" @click="goto('contactUs')">
 					<image class="slot-image2" src="/static/img/ico_lxwm_@3x.png" mode="widthFix"></image>
 					<text class="list-text">联系我们</text>
+					<text class="navigat-arrow">&#xe65e;</text>
+				</view>
+				
+				<view class="center-list-item" @click="goto('opinion')">
+					<image class="slot-image2" src="/static/img/ico_lxwm_@3x.png" mode="widthFix"></image>
+					<text class="list-text">意见反馈</text>
 					<text class="navigat-arrow">&#xe65e;</text>
 				</view>
 			</view>
@@ -206,6 +213,12 @@
 					case 'contactUs':
 						uni.navigateTo({
 							url: '../contactUs/list',
+							events: {}
+						})
+						break;
+					case 'opinion':
+						uni.navigateTo({
+							url: '/uni_modules/uni-feedback/pages/opendb-feedback/opendb-feedback',
 							events: {}
 						})
 						break;

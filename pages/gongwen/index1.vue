@@ -14,70 +14,85 @@
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				recordList: [],
-			}
-		},
-		mounted() {
-			this.getList()
-		},
-		methods: {
-			getList() {
-				let formData = {}
-				uniCloud.callFunction({
-					name: 'gongwen',
-					data: {
-						name: 'gwGetType',
-						data: formData
-					}
-				}).then((res) => {
-					this.recordList = res.result.data
-				})
-			},
-			routeTo(flowid,modeid) {
-				uni.navigateTo({
-					url: '/pages/gongwen/index?flowid=' + flowid +'&modeid='+modeid
-				});
-			}
-		}
-	}
+export default {
+  data() {
+    return {
+      recordList: [],
+    };
+  },
+  mounted() {
+    this.getList();
+  },
+  methods: {
+    getList() {
+      let formData = {};
+      uniCloud
+        .callFunction({
+          name: "gongwen",
+          data: {
+            name: "gwGetType",
+            data: formData,
+          },
+        })
+        .then((res) => {
+          this.recordList = res.result.data;
+        });
+    },
+    routeTo(flowid, modeid) {
+		console.log(flowid,modeid)
+      if (modeid == 3) {
+        uni.navigateTo({
+          url: "/pagesOA/car/index?flowid=" + flowid + "&modeid=" + modeid,
+        });
+        return;
+      }
+	 if(modeid == 4){
+		 uni.navigateTo({
+		   url: "/pagesOA/carReturn/index?flowid=" + flowid + "&modeid=" + modeid,
+		 });
+		 return;
+	 }
+      uni.navigateTo({
+         url: "/pages/gongwen/index?flowid=" + flowid + "&modeid=" + modeid,
+      });
+    },
+  },
+};
 </script>
 
 <style>
-	* {
-		-webkit-text-size-adjust: none;
-	}
+* {
+  -webkit-text-size-adjust: none;
+}
 
-	.bg{
-		background-color: #F4F5F7;
-		width: 100%;
-	}
+.bg {
+  background-color: #f4f5f7;
+  width: 100%;
+}
 
-	.record_item {
-		margin-top: 5px;
-		padding: 12px 14px;
-		display: flex;
-		background-color: #fff;
-	}
+.record_item {
+  margin-top: 5px;
+  padding: 12px 14px;
+  display: flex;
+  background-color: #fff;
+}
 
-	.record_item--normargin {
-		padding: 12px 14px;
-		display: flex;
-	}
+.record_item--normargin {
+  padding: 12px 14px;
+  display: flex;
+}
 
-	.record_item_right_title {
-		margin-left: 10px;
-		display: flex;
-		align-items: center;
-		font-size: 15px;
-		color: #333;
-		font-weight: bold;
-	}
+.record_item_right_title {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #333;
+  font-weight: bold;
+}
 
-	.img {
-		width: 24px;
-		height: 24px;
-	}
+.img {
+  width: 24px;
+  height: 24px;
+}
 </style>

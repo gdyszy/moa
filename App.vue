@@ -6,7 +6,7 @@
 
 	export default {
 		onLaunch: function() {
-			console.log('App Launch');
+			// console.log('App Launch');
 			// #ifdef APP-PLUS
 			setTimeout(() => {
 				plus.navigator.closeSplashscreen();
@@ -76,10 +76,10 @@
 			// #endif
 		},
 		onShow: function() {
-			console.log('App Show');
+			// console.log('App Show');
 		},
 		onHide: function() {
-			console.log('App Hide');
+			// console.log('App Hide');
 		},
 		methods: {
 			...mapMutations(['login', 'setUniverifyErrorMsg', 'setHideUniverify']),
@@ -213,5 +213,25 @@
 
 	button.primary {
 		background-color: #0faeff;
+	}
+		    uni-checkbox .uni-checkbox-input {
+		border-radius: 50%;
+	}
+
+	uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
+		/* border: 1rpx solid rgb(253, 103, 3); */
+		background-color: rgba(59,137,245,1);
+	}
+
+	uni-checkbox .uni-checkbox-wrapper {
+		width: 100%;
+	}
+	
+	uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked:before{
+		color: #FFFFFF;
+	}
+    
+	uni-checkbox:not([disabled]) .uni-checkbox-input:hover{
+		border: 2rpx solid rgba(229,229,229,1);
 	}
 </style>

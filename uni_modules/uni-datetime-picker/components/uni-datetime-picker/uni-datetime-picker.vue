@@ -8,6 +8,7 @@
 				</view>
 				<input class="uni-date__input" type="text" v-model="singleVal" :placeholder="placeholder"
 					:disabled="true" />
+				<!-- <image v-if="image" class="icon" src="../../../../pagesOA/property/components/warehouse/images/btn_change_@2x.png" mode=""></image> -->
 			</view>
 			<view v-else class="uni-date-x uni-date-range" @click="show">
 				<view class="uni-date__icon-logo">
@@ -206,6 +207,10 @@
 				default: true
 			},
 			disabled: {
+				type: [Boolean],
+				default: false
+			},
+			image: {
 				type: [Boolean],
 				default: false
 			}
@@ -818,4 +823,11 @@
 		margin-right: 50px;
 	}
 
+	.icon {
+		width: 70rpx;
+		height: 70rpx;
+		position: absolute;
+		top: 0rpx;
+		right: 0rpx;
+	}
 </style>

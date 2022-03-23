@@ -1,11 +1,11 @@
 <template>
 	<view>
 		<tab selectClass="Selfont" :tab-list="tabList" :tabCur.sync="TabCur" @change="tabChange" :selectStatus="selectStatus"></tab>
-		<view v-if="TabCur == 0">
+		<view v-show="TabCur == 0">
 			<start-submit @jump="tabChange" :sid="id"></start-submit>
 		</view>
 		<view v-show="TabCur == 1">
-			<check-deatil :refresh="TabCur" :filterIndex="filterIndex" ref="checkDetail"></check-deatil>
+			<check-deatil :refresh="TabCur" ref="checkDetail"></check-deatil>
 		</view>
 	</view>
 </template>
@@ -27,7 +27,6 @@
 				TabCur: 0,
 				tabList: [{name: '提交申请'},{name: '申请记录'}],
 				selectStatus: false,
-				filterIndex: 0,
 				id: ''
 			}
 		},
@@ -38,9 +37,8 @@
 				this.TabCur == 1?this.selectStatus = true:this.selectStatus = false
 			},
 			custom(obj){
-				this.TabCur = obj.tabIndex
-				this.filterIndex = obj.sid
-				this.$refs.checkDetail.getList()
+				this.TabCur = obj.tabIndex;
+				this.$refs.checkDetail.statsToSort(obj.sid);
 			},
 			resvise(e){
 				this.TabCur = e.tabIndex

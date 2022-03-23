@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<view class="uni-header uhead">
-			<view class="uni-group">
+			<view class="uni-group" style="padding-right:20rpx">
 				<uni-easyinput class="left" prefixIcon="search" v-model="query" placeholder="搜索联系人" @confirm="search"
 					@iconClick="search"></uni-easyinput>
 				<view class="right" @click="fabClick" v-if="ContactsAdd">
@@ -63,14 +63,14 @@
 			})
 		},
 		onReachBottom() {
-			this.$refs.udb.loadMore()
+			if(this.$refs.udb) this.$refs.udb.loadMore();
 		},
 		onShow() {
 			this.getCompany();
 		},
 		onLoad() {
 			this.checkToken((res) => {//判断token 是否有效
-				if(res==true){
+				if(res){
 					this.getDepartment();
 					if (uni.getStorageSync('userInfo').role == 'admin' && this.hasLogin) {
 						this.ContactsAdd = true;
@@ -176,5 +176,6 @@
 </script>
 
 <style>
+
 
 </style>

@@ -38,9 +38,9 @@
 				this.TabCur == 1?this.selectStatus = true:this.selectStatus = false
 			},
 			custom(obj){
-				this.TabCur = obj.tabIndex
-				this.filterIndex = obj.sid
-				this.$refs.checkDetail.getList()
+				this.TabCur = obj.tabIndex;
+				this.filterIndex = obj.sid;
+				this.$refs.checkDetail.statsToSort(obj.sid);
 			},
 			resvise(e){
 				this.TabCur = e.tabIndex

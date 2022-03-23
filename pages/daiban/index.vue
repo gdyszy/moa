@@ -1,6 +1,7 @@
 <template>
 	<view class="bg">
-		<view v-for="(item,index) in recordList" :key="index" @click="routeTo(item._id,item.gwflowid,item.result)">
+    <Loading :loading="Loading"  />
+		<view v-for="(item,index) in recordList" :key="index" @click="routeTo(item)">
 			<view :class="item!=0 ?'record_item':'record_item--normargin'">
 				<image src="@/static/ico_page.png" class="img">
 					<view class="record_item_right">
@@ -24,27 +25,32 @@
 </template>
 
 <script>
+import Loading from "@/pages/selectUser/components/Loading.vue";
 export default {
+  components: { Loading },
   data() {
     return {
+      Loading: true,
       recordList: [],
       formData: {
         user_id: uni.getStorageSync("username"),
       },
     };
   },
-  mounted() {
+  // mounted() {
+  //   this.getList();
+  // },
+  onLoad() {
+    this.Loading = true;
     this.getList();
-  },onShow() {
-  	this.getList();
   },
   methods: {
-	  onPullDownRefresh(){
-	  	this.getList();
-	  	setTimeout(function() {
-	  		uni.stopPullDownRefresh();
-	  	}, 1000);
-	  },
+    onPullDownRefresh() {
+      this.getList();
+      setTimeout(function () {
+        uni.stopPullDownRefresh();
+      }, 1000);
+    },
     getList() {
       uniCloud
         .callFunction({
@@ -56,13 +62,51 @@ export default {
         })
         .then((res) => {
           this.recordList = res.result;
-          
+
+          this.Loading = false;
         });
     },
-    routeTo(id, gwflowid,result ) {
-      uni.navigateTo({
-        url: "/pages/daiban/detail?_id=" + id + "&gwflowid=" + gwflowid+"&result="+result,
-      });
+    routeTo(item) {
+      if (
+        item.title.indexOf("收文登记") != -1 ||
+        item.title.indexOf("发文拟稿") != -1
+      ) {
+        uni.navigateTo({
+          url:
+            "/pages/daiban/detail?_id=" +
+            item._id +
+            "&gwflowid=" +
+            item.gwflowid +
+            "&result=" +
+            item.result,
+        });
+      }
+
+      if (item.title.indexOf("用车申请") != -1) {
+        uni.navigateTo({
+          url:
+            "/pagesOA/car/detail?_id=" +
+            item._id +
+            "&gwflowid=" +
+            item.gwflowid +
+            "&result=" +
+            item.result,
+        });
+      }
+
+      if (item.title.indexOf("车辆退回") != -1) {
+        uni.navigateTo({
+          url:
+            "/pagesOA/carReturn/detail?_id=" +
+            item._id +
+            "&gwflowid=" +
+            item.gwflowid +
+            "&result=" +
+            item.result +
+            "&type=" +
+            1,
+        });
+      }
     },
   },
 };
@@ -111,10 +155,9 @@ export default {
   padding-left: 10px;
 }
 .showAll {
-		color: #B2B2B2;
-		margin: 20px auto 10px;
-		width: 50%;
-		text-align: center;
-		
-	}
+  color: #b2b2b2;
+  margin: 20px auto 10px;
+  width: 50%;
+  text-align: center;
+}
 </style>

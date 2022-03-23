@@ -1,5 +1,6 @@
 <template>
   <view style="width: 100%">
+	<Loading :loading="Loading"  />
     <view class="header">
       <view class="header_img">
         <image
@@ -207,14 +208,17 @@
 </template>
 
 <script>
+import Loading from "@/pages/selectUser/components/Loading.vue";
 import { timeFormat } from "@/utils/dateUtils.js";
 import steps from "./components/steps/index.vue";
 export default {
   components: {
     steps,
+	Loading
   },
   data() {
     return {
+	  Loading:true,
       listDetail: {},
       id: "",
       uid: "",
@@ -326,6 +330,7 @@ export default {
           uni.hideLoading();
           this.listDetail = res.result.data[0];
           this.listDetail.create_date = timeFormat(new Date(), "yyyy-MM-dd");
+		  this.Loading=false;
           let info = {
             isok: [],
             approval: [],

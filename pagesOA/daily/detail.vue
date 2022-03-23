@@ -25,19 +25,19 @@
 				</view>
 				<view class="baseMsg_item">
 					<view class="baseMsg_item_title">项目名称</view>
-					<textarea class="baseMsg_item_val" auto-height type="text" v-model="info.projectName" :disabled="!isEdit" />
+					<textarea :class="{'baseMsg_item_val':true , 'textEidt':isEdit}" auto-height type="text" v-model="info.projectName" :disabled="!isEdit" />
 				</view>
 				<view class="baseMsg_item">
 					<view class="baseMsg_item_title">今日工作</view>
-					<textarea class="baseMsg_item_val" auto-height	 type="text" v-model="info.todayWork" :disabled="!isEdit" />
+					<textarea :class="{'baseMsg_item_val':true , 'textEidt':isEdit}" auto-height	 type="text" v-model="info.todayWork" :disabled="!isEdit" />
 				</view>
 				<view class="baseMsg_item">
 					<view class="baseMsg_item_title">明日工作</view>
-					<textarea class="baseMsg_item_val" auto-height	 type="text" v-model="info.tomorrowWork" :disabled="!isEdit" />
+					<textarea :class="{'baseMsg_item_val':true , 'textEidt':isEdit}" auto-height	 type="text" v-model="info.tomorrowWork" :disabled="!isEdit" />
 				</view>
 				<view class="baseMsg_item">
 					<view class="baseMsg_item_title">备注</view>
-					<textarea class="baseMsg_item_val" auto-height type="text" v-model="info.remarks" :disabled="!isEdit" />
+					<textarea :class="{'baseMsg_item_val':true , 'textEidt':isEdit}" auto-height type="text" v-model="info.remarks" :disabled="!isEdit" />
 				</view>
 			</view>
 		</view>
@@ -162,7 +162,6 @@
 					user_id:uni.getStorageSync('username'),
 					_id:this.id
 				}
-				console.log(formData)
 				uniCloud.callFunction({
 					name: 'daily',
 					data: {
@@ -170,7 +169,6 @@
 						data: formData
 					}
 				}).then((res) => {
-					console.log(res)
 				})
 			},
 		}
@@ -178,7 +176,7 @@
 	
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.header {
 		background-color: #FFFFFF;
 		padding: 30rpx;
@@ -216,7 +214,10 @@
 	}
 	.baseMsg_item {
 		display: flex;
-		margin: 20rpx 0;
+		margin: 30rpx 0;
+		.textEidt{
+			border-bottom: 1px solid #f0f0f0;
+		}
 	}
 	.baseMsg_item_title {
 		color: #999999;

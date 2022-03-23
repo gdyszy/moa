@@ -156,7 +156,7 @@
 		/* line-height: 90upx; */
 		margin: 0 10upx;
 		padding: 0 20upx;
-		color: #999999;
+		/* color: #999999; */
 	}
 
 	.wuc-tab-item.cur {

@@ -1,10 +1,7 @@
 <template>
 	<view class="page">
-		<uni-nav-bar padding="50rpx 0 0 0" left-icon="back" :title="department" :navtxtclass="0" @clickLeft="back"
-			:border="false">
-		</uni-nav-bar>
-		<view class="uni-header uhead">
-			<view class="uni-group">
+		<view class="uni-header uhead" >
+			<view class="uni-group" >
 				<uni-easyinput class="left" prefixIcon="search" v-model="query" placeholder="搜索联系人" @confirm="search"
 					@iconClick="search"></uni-easyinput>
 				<view class="right" @click="fabClick" v-if="ContactsAdd">
@@ -217,4 +214,6 @@
 .load-more{
 	background-color: #F7F8FA;
 }
+
+
 </style>

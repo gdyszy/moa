@@ -8,6 +8,7 @@
       @selectVal="inputVal"
     />
     <from-item
+      v-show="arrindex!==4"
       ref="item2"
       v-if="TimeDate"
       mode="picker"
@@ -17,6 +18,7 @@
       :pickerType="0"
     />
     <from-item
+      v-show="arrindex!==4"
       ref="item3"
       v-if="TimeDate"
       mode="picker"
@@ -24,6 +26,17 @@
       :dateType="dateType"
       @dTime="dTime"
       :pickerType="1"
+    />
+
+      <from-item
+      v-show="arrindex==4"
+      ref="item2"
+      v-if="TimeDate"
+      mode="picker"
+      itemTitle="请选择时间"
+      dateType="daterange"
+      @dTime="dTime"
+      :pickerType="0"
     />
     <from-item
       ref="item4"
@@ -71,8 +84,10 @@ export default {
         { name: "事假", msg: "按小时算", value: 4, type: 0 },
         { name: "产假", msg: "按天算", value: 5, type: 1 },
       ],
+      arrindex:'',
       itemTitle: "时长(小时)",
       dateType: "datetime",
+      line:'line',
       formData: {
         leaveid: 1,
         totals: "",
@@ -248,6 +263,8 @@ export default {
         });
     },
     inputVal(e) {
+      this.arrindex =e
+    
       this.formData.leaveid = this.arr[e].value;
       this.itemTitle = this.arr[e].msg;
       if (this.arr[e].type == 0) {
@@ -270,9 +287,14 @@ export default {
       }, 200);
     },
     dTime(e) {
-      e.type == 0
+      if(this.arrindex==4){
+     this.formData.start_time = e.val[0]
+       this.formData.end_time = e.val[1]
+      }else{
+            e.type == 0
         ? (this.formData.start_time = e.val)
         : (this.formData.end_time = e.val);
+      }
     },
     textVal(e) {
       this.formData.explain = e;

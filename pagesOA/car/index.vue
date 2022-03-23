@@ -1,0 +1,180 @@
+<template>
+  <view>
+    <tab
+      selectClass="Selfont"
+      :tab-list="tabList"
+      :tabCur.sync="TabCur"
+      :selectStatus="selectStatus"
+    ></tab>
+    <view v-show="TabCur == 0">
+      <start-submit
+        @jump="tabChange"
+        :sid="id"
+        :gwGetType="gwGetType"
+        :flowid="flowid"
+        :carData="carData"
+        :formData="formData"
+      ></start-submit>
+    </view>
+    <view v-show="TabCur == 1">
+      <check-deatil
+        :refresh="TabCur"
+        :gwGetType="gwGetType"
+        :flowid="flowid"
+        :modeid="modeid"
+        :filterIndex="filterIndex"
+        ref="checkDetail"
+      ></check-deatil>
+    </view>
+  </view>
+</template>
+
+<script>
+import tab from "@/components/wuc-tab/wuc-tab.vue";
+import startSubmit from "./components/startSubmit.vue";
+import checkDeatil from "./components/checkDetail.vue";
+import getLogin from "@/mixins/index.js";
+
+export default {
+  components: {
+    tab,
+    startSubmit,
+    checkDeatil,
+  },
+  data() {
+    return {
+      TabCur: 0,
+      tabList: [{ name: "提交申请" }, { name: "申请记录" }],
+      selectStatus: false,
+      filterIndex: 0,
+      id: "",
+      carData: {},
+      flowid: "",
+      gwGetType: {},
+      modeid: "",
+      formData: {
+          carInfoRes: {
+          car_num: "",
+          carbrand: "",
+          color: "1",
+          seat_num: "",
+        },
+        optid: "",
+        optname: "",
+        user_id: "",
+        username: uni.getStorageSync("userInfo").nickname,
+        car_begin_time: "",
+        car_end_time: "",
+        car_id: "",
+        external_persion: "",
+        place_bengin: "",
+        place_end: "",
+        explain: "",
+        modeid: "",
+      },
+    };
+  },
+  mixins: [getLogin],
+  onShow() {
+
+  },
+
+  onLoad(e) {
+    if (e.info) {
+      let info = JSON.parse(e.info);
+      Object.assign(this.formData, info);
+      this.formData.car_num = this.formData.carInfoRes.car_num;
+      this.formData.carbrand = this.formData.carInfoRes.carbrand;
+      this.formData.car_id = this.formData.carInfoRes._id;
+    }
+
+ 
+    let { modeid } = e;
+    if (modeid) this.modeid = modeid;
+
+    this.getType();
+  },
+  methods: {
+    getType() {
+      uni.showLoading();
+      uniCloud
+        .callFunction({
+          name: "gongwen",
+          data: {
+            name: "gwGetType",
+            data: {
+              modeid: 3, //用车申请 3  ，车辆退回申请 4
+            },
+          },
+        })
+        .then((res) => {
+          this.flowid = res.result.data[0]._id;
+          this.$store.state.flowid = this.flowid;
+          this.lc(res.result.data[0]);
+          uni.hideLoading();
+        })
+        .catch((err) => {
+          uni.hideLoading();
+          uni.showModal({
+            content: err.message || "请求服务失败",
+            showCancel: false,
+          });
+        })
+        .finally(() => {});
+    },
+    lc(e) {
+      this.flowid = e._id;
+      let data = {
+        flowid: e._id,
+        department_id: uni.getStorageSync("userInfo").department_id[0],
+      };
+
+      uni.showLoading();
+      uniCloud
+        .callFunction({
+          name: "gongwen",
+          data: {
+            name: "getSN",
+            data,
+          },
+        })
+        .then((res) => {
+
+          this.gwGetType = res.result;
+          uni.hideLoading();
+        })
+        .catch((err) => {
+          uni.hideLoading();
+          uni.showModal({
+            content: err.message || "请求服务失败",
+            showCancel: false,
+          });
+        })
+        .finally(() => {});
+    },
+
+    tabChange(index) {
+      this.TabCur = index;
+      this.TabCur == 1
+        ? (this.selectStatus = true)
+        : (this.selectStatus = false);
+    },
+    custom(obj) {
+      this.TabCur = obj.tabIndex;
+      this.filterIndex = obj.sid;
+      this.$refs.checkDetail.getList();
+    },
+    resvise(e) {
+      this.TabCur = e.tabIndex;
+      this.id = e.id;
+    },
+  },
+};
+</script>
+
+<style>
+page {
+  background-color: #f8f8f8;
+  display: block;
+}
+</style>

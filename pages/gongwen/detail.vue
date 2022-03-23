@@ -374,7 +374,7 @@ export default {
         _id: this.id,
         info: this.info,
       };
-      // console.log(formData);
+   
       uniCloud
         .callFunction({
           name: "daily",

@@ -233,7 +233,6 @@
 				})
 			},
 			revoke(){
-				let that = this
 				uniCloud.callFunction({
 					name: 'flow',
 					data: {

@@ -2,7 +2,7 @@
 	<view class="uni-file-picker__container">
 		<view class="file-picker__box" v-for="(item,index) in filesList" :key="index" :style="boxStyle">
 			<view class="file-picker__box-content" :style="borderStyle">
-				<image class="file-image" :src="item.path" mode="aspectFill" @click.stop="prviewImage(item,index)"></image>
+				<image class="file-image" :src="item.url" mode="aspectFill" @click.stop="prviewImage(item,index)"></image>
 				<view v-if="delIcon && !readonly" class="icon-del-box" @click.stop="delFile(index)">
 					<view class="icon-del"></view>
 					<view class="icon-del rotate"></view>
@@ -30,6 +30,7 @@
 <script>
 	export default {
 		name: "uploadImage",
+		emits:['uploadFiles','choose','delFile'],
 		props: {
 			filesList: {
 				type: Array,
@@ -104,7 +105,7 @@
 				} else {
 					obj.width = this.value2px(width)
 				}
-				
+
 				let classles = ''
 				for(let i in obj){
 					classles+= `${i}:${obj[i]};`
@@ -116,12 +117,14 @@
 					border
 				} = this.styles
 				let obj = {}
+				const widthDefaultValue = 1
+				const radiusDefaultValue = 3
 				if (typeof border === 'boolean') {
 					obj.border = border ? '1px #eee solid' : 'none'
 				} else {
-					let width = (border && border.width) || 1
+					let width = (border && border.width) || widthDefaultValue
 					width = this.value2px(width)
-					let radius = (border && border.radius) || 5
+					let radius = (border && border.radius) || radiusDefaultValue
 					radius = this.value2px(radius)
 					obj = {
 						'border-width': width,
@@ -154,7 +157,7 @@
 				}
 				if(this.disablePreview) return
 				this.filesList.forEach(i => {
-					urls.push(i.path)
+					urls.push(i.url)
 				})
 
 				uni.previewImage({
@@ -178,10 +181,12 @@
 
 <style lang="scss">
 	.uni-file-picker__container {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		box-sizing: border-box;
+		/* #endif */
 		flex-wrap: wrap;
 		margin: -5px;
-		box-sizing: border-box;
 	}
 
 	.file-picker__box {
@@ -190,7 +195,9 @@
 		width: 33.3%;
 		height: 0;
 		padding-top: 33.33%;
+		/* #ifndef APP-NVUE */
 		box-sizing: border-box;
+		/* #endif */
 	}
 
 	.file-picker__box-content {
@@ -201,7 +208,7 @@
 		left: 0;
 		margin: 5px;
 		border: 1px #eee solid;
-		border-radius: 8px;
+		border-radius: 5px;
 		overflow: hidden;
 	}
 
@@ -219,7 +226,9 @@
 	}
 
 	.file-picker__mask {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		justify-content: center;
 		align-items: center;
 		position: absolute;
@@ -238,7 +247,9 @@
 	}
 
 	.is-add {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		align-items: center;
 		justify-content: center;
 	}
@@ -256,12 +267,14 @@
 	}
 
 	.icon-del-box {
+		/* #ifndef APP-NVUE */
 		display: flex;
+		/* #endif */
 		align-items: center;
 		justify-content: center;
 		position: absolute;
-		top: 5px;
-		right: 5px;
+		top: 3px;
+		right: 3px;
 		height: 26px;
 		width: 26px;
 		border-radius: 50%;

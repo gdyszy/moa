@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import selectUser from './selectUser'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ const store = new Vuex.Store({
 		hasLogin: false,
 		userName: "",
 		univerifyErrorMsg: "",
-		hideUniverify: true
+		hideUniverify: true,
+		flowid:"",
 	},
 	mutations: {
 		login(state, userName) {
@@ -29,7 +31,11 @@ const store = new Vuex.Store({
 		setHideUniverify(state, payload = false) {
 			state.hideUniverify = payload
 		}
-	}
+	},
+	modules: {
+		selectUser
+	  }
+
 })
 
 export default store

@@ -3,7 +3,7 @@
 		<view :class="{ 'uni-navbar--fixed': fixed, 'uni-navbar--shadow': shadow, 'uni-navbar--border': border }" :style="{ 'background-color': backgroundColor }"
 		 class="uni-navbar__content">
 			<status-bar v-if="statusBar" />
-			<view :style="{ color: color,backgroundColor: backgroundColor,padding:padding }" class="uni-navbar__header uni-navbar__content_view" :class="backgroundimage?'backgroundimage':''">
+			<view :style="{ color: color,backgroundColor: backgroundColor }" class="uni-navbar__header uni-navbar__content_view">
 				<view @tap="onClickLeft" class="uni-navbar__header-btns uni-navbar__header-btns-left uni-navbar__content_view">
 					<view class="uni-navbar__content_view" v-if="leftIcon.length">
 						<uni-icons :color="color" :type="leftIcon" size="24" />
@@ -16,7 +16,7 @@
 				</view>
 				<view class="uni-navbar__header-container uni-navbar__content_view" @tap="onClickTitle">
 					<view class="uni-navbar__header-container-inner uni-navbar__content_view" v-if="title.length">
-						<text class="uni-nav-bar-text" :class="['navtxtclass-'+navtxtclass]" :style="{color: color }">{{ title }}</text>
+						<text class="uni-nav-bar-text" :style="{color: color }">{{ title }}</text>
 					</view>
 					<!-- 标题插槽 -->
 					<slot />
@@ -66,14 +66,11 @@
 		components: {
 			statusBar
 		},
+		emits:['clickLeft','clickRight','clickTitle'],
 		props: {
 			title: {
 				type: String,
 				default: ""
-			},
-			navtxtclass: {
-				type: [Number],
-				default: 0
 			},
 			leftText: {
 				type: String,
@@ -102,14 +99,6 @@
 			backgroundColor: {
 				type: String,
 				default: "#FFFFFF"
-			},
-			padding: {
-				type: String,
-				default: "0"
-			},
-			backgroundimage: {
-				type: [Boolean, String],
-				default: false
 			},
 			statusBar: {
 				type: [Boolean, String],
@@ -145,7 +134,6 @@
 
 <style lang="scss" scoped>
 	$nav-height: 44px;
-
 	.uni-nav-bar-text {
 		/* #ifdef APP-PLUS */
 		font-size: 34rpx;
@@ -239,6 +227,15 @@
 	.uni-navbar--fixed {
 		position: fixed;
 		z-index: 998;
+		/* #ifdef H5 */
+		left: var(--window-left);
+		right: var(--window-right);
+		/* #endif */
+		/* #ifndef H5 */
+		left:0;
+		right: 0;
+		/* #endif */
+
 	}
 
 	.uni-navbar--shadow {
@@ -251,20 +248,5 @@
 		border-bottom-width: 1rpx;
 		border-bottom-style: solid;
 		border-bottom-color: $uni-border-color;
-	}
-	.navtxtclass-0 {
-		opacity: 0.9000000357627869;
-		color: #000000;
-		font-family: PingFang SC;
-		font-weight: 500;
-		font-size: 17px;
-		line-height: normal;
-		letter-spacing: 0px;
-		text-align: center;
-	}
-	.backgroundimage{
-		background-image: url(https://vkceyugu.cdn.bspapp.com/VKCEYUGU-0f215899-37db-41b7-8231-51232da1a1a3/750d3eb5-53cc-4eab-9fd4-07debb5bfb72.png);
-		height: 50px;
-		background-size: 100% auto;
 	}
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<unicloud-db ref="udb" v-slot:default="{data, pagination, loading, hasMore, error}" collection="contactUs"
+		<unicloud-db ref="udb" v-slot:default="{data,error}" collection="contactUs"
 			field="companyname,telephone,email,address">
 			<view v-if="error">{{error.message}}</view>
 			<view v-else-if="data">
@@ -40,7 +40,7 @@
 					</uni-list-item>
 					<!-- #endif -->
 					<!-- #ifdef H5 -->
-					<uni-list-item clickable>
+					<uni-list-item clickable @click="onClick(item.telephone)">
 						<view slot="body" class="slot-box slot-text">
 							<view class="re-uni-list-item__content">
 								<text class="re-uni-list-item__content-note">联系电话</text>
@@ -106,12 +106,15 @@
 		},
 		methods: {
 			onClick(num) {
-				plus.device.dial(num,false) 
+				// plus.device.dial(num,false) 
+				uni.makePhoneCall({
+					phoneNumber:num
+				})
 			},
 			onClickwx(num) {
 				wx.makePhoneCall({
-				      phoneNumber: num,
-				    })
+					phoneNumber: num,
+				})
 			},
 			handleItemClick(id) {
 				uni.navigateTo({
@@ -187,12 +190,12 @@
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
-		flex-direction: row;
+		/* flex-direction: row;
 		padding: $list-item-pd;
 		padding-left: $uni-spacing-row-lg;
 		flex: 1;
 		overflow: hidden;
-		// align-items: center;
+		// align-items: center; */
 	}
 
 	.slot-box {

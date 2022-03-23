@@ -2,12 +2,15 @@
     "name" : "企业移动办公-用户端",
     "appid" : "",
     "description" : "企业移动办公moa",
-    "versionName" : "1.3.0",
-    "versionCode" : 130,
+    "versionName" : "2.0.1",
+    "versionCode" : 201,
     "transformPx" : false,
     "app-plus" : {
         "usingComponents" : true,
         "compilerVersion" : 3,
+        "compatible" : {
+            "ignoreVersion" : true
+        },
         "modules" : {
             "OAuth" : {},
             "Geolocation" : {}

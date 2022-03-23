@@ -74,7 +74,8 @@
 	export default {
 		data() {
 			return {
-				menuList: [{
+				menuList: [
+					{
 						name: "工作通知",
 						imgUrl: require("@/static/ico_daiban.png"),
 						route: "/pages/daiban/index",
@@ -124,6 +125,20 @@
 						imgUrl: require("@/static/ico_dailyRecord.png"),
 						route: "/pagesOA/dailyRecord/index",
 					},
+					{
+						name: "资产管理",
+						imgUrl: require("@/static/ico_daily.png"),
+						route: "/pagesOA/property/index1",
+					},	{
+						name: "用车申请",
+						imgUrl: require("@/static/ico_daiban.png"),
+						route: "/pagesOA/car/index",
+					},
+					// 	{
+					// 	name: "用车审批",
+					// 	imgUrl: require("@/static/ico_daiban.png"),
+					// 	route: "/pagesOA/carExamine/index",
+					// },
 				],
 				bannerList: [],
 				noticeList: [],
@@ -182,10 +197,9 @@
 				if (Width >= 1200) {
 					_this.uColumn = 11
 					_this.dindex = 10
-					_this.sitem = false
-					_this.idots = false
+					_this.sitem = true
+					_this.idots = true
 				}
-				console.log("uColumn:" + _this.uColumn)
 			},
 			//获取代办数量
 			getRemind() {
@@ -306,13 +320,13 @@
 		/* #endif */
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		// justify-content: center;
 		padding: 30rpx 30rpx;
 	}
 
 	.remind {
 		position: absolute;
-		z-index: 999;
+		z-index: 9999;
 		right: -24rpx;
 		top: -24rpx;
 		width: 50rpx;
@@ -454,12 +468,14 @@
 	.menuList {
 		list-style: none;
 		padding: 0;
+		box-sizing: border-box;
 		display: flex;
 		justify-content: center;
 		background-color: #fff;
 		flex-wrap: wrap;
 		border: 1px solid #fff;
 		border-radius: 6px;
+		// padding-top: 20rpx;
 		box-shadow: 0 1px 10px 1px #e8e8e8;
 	}
 
