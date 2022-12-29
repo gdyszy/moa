@@ -30,7 +30,7 @@
 					this.setUniverifyErrorMsg(err.errMsg)
 					// 没有开通一键登录
 					this.setHideUniverify(true);
-					console.log("preLogin fail: ", err);
+					//console.log("preLogin fail: ", err);
 				}
 			})
 			// #endif
@@ -233,5 +233,11 @@
     
 	uni-checkbox:not([disabled]) .uni-checkbox-input:hover{
 		border: 2rpx solid rgba(229,229,229,1);
+	}
+	.tips {
+	  color: #b2b2b2;
+	  width: 40%;
+	  margin: 20rpx auto;
+	  text-align: center;
 	}
 </style>

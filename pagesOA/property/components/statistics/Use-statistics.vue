@@ -10,12 +10,13 @@
 			</view>
 		</view>
 		<!-- 设备名称 -->
-		<view class="devicename" v-for="item in List">
+		<view class="devicename" v-for="(item,index) in List" :key="index">
 			<view class="devicename-item">
 				<view>{{item.category_name[0].category_name}}-{{item.device_model}}</view>
 				<view>{{ array[item.status] }}</view>
 			</view>
 		</view>
+		<view class="tips">已显示全部</view>
 	</view>
 </template>
 

@@ -2,7 +2,7 @@
 	<view class="user-card">
 		
 		<view style="width: 100%; margin: 0 auto;">
-			<view class="all" @click="open" hover-class="bg-light">
+			<view class="all" @click="getDetail" hover-class="bg-light">
 				<view class="all-left">
 				
 					<image :src="item.friend_user.avatar" style="width: 80rpx; height: 80rpx;" class="rounded-circle mr-2" />
@@ -64,9 +64,14 @@ import { timeFormat } from "@/utils/dateUtils.js";
 			returnTime(e){
 			return	timeFormat(e, "hh:mm")
 			},
-			open() {
+			getDetail() {
+				let user ={
+					nickname:this.item.friend_user.nickname,
+					_id:this.item.friend_user._id,
+					from:'index_message'
+				}
 				uni.navigateTo({
-					url: '/pages/message/user-chat/user-chat?user=' + JSON.stringify(this.item)
+					url: '/pages/message/user-chat/user-chat?user=' + JSON.stringify(user)
 				})
 			}
 		}

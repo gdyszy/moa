@@ -45,7 +45,6 @@
           :threshold="50"
           :right-options="del ? options1 : options2"
           @click="bindClick(item)"
-          @change="swipe($event, item)"
           v-if="type == '3'"
         >
           <checkbox-group>
@@ -302,7 +301,7 @@ export default {
           },
         })
         .then((res) => {
-          if (res.success == true) {
+          if (res) {
             uni.hideLoading();
             show_nativeUI_toast("删除成功", "success");
             setTimeout(() => {

@@ -105,21 +105,21 @@ export default {
     };
   },
   onLoad(e) {
-    if (e.name) {
-      this.department = e.name;
-    }
-    if (e.percount) {
-      this.percount = e.percount;
-    }
-    this.department_id = e.department_id;
-    if (e.children == "true") {
-      this.getDepartment(e.department_id);
-      this.getUser(e.department_id);
-    } else if (e.search == "true") {
+	   let departmentInfo =  this.$store.state.departmentInfo
+	   if(departmentInfo){
+		 if (departmentInfo.name) {
+		   this.department = departmentInfo.name;
+		 }
+		 if (departmentInfo.percount) {
+		   this.percount = departmentInfo.percount;
+		 }
+		 this.department_id = departmentInfo.department_id;
+		this.getDepartment(departmentInfo.department_id);
+		this.getUser(departmentInfo.department_id); 
+	   }
+    if (e.search == "true") {
       this.query = e.query;
       this.getSearch(e.query);
-    } else {
-      this.getUser(e.department_id);
     }
     if (uni.getStorageSync("userInfo").role == "admin") {
       this.ContactsAdd = true;
@@ -171,10 +171,9 @@ export default {
     getDepartment(id) {
       const parent_id = id;
       db.collection("opendb-department")
-        .orderBy("sort asc")
         .where({
           parent_id: id,
-        })
+        }).orderBy("sort asc")
         .get()
         .then((res) => {
           this.departmentData = res.result.data;
@@ -220,6 +219,7 @@ export default {
       uni.navigateBack({});
     },
     search() {
+		this.$store.state.departmentInfo={}
       const query = this.query.trim();
       if (!query) {
         query = "";
@@ -260,13 +260,13 @@ export default {
     },
 
     depClick(department_id, name, percount) {
-      let url =
-        "./list2?department_id=" +
-        department_id +
-        "&name=" +
-        name +
-        "&percount=" +
-        percount;
+				this.$store.state.departmentInfo ={
+					department_id:department_id,
+					name:name,
+					percount:percount,
+					from:'email'
+				}
+				let url = './list2';
       uni.navigateTo({
         url: url,
       });

@@ -6,10 +6,10 @@
 				<image src="@/static/ico_page.png" class="img">
 					<view class="record_item_right">
 						<view class="record_item_right_title">
-							<span>{{item.title}}</span>
+							<span>{{item.title?item.title:''}}</span>
 						</view>
-						<view class="record_item_title">
-									标题:&nbsp;{{item.gwtitle}}
+						<view class="record_item_title" v-if="item.gwtitle!=''">
+									标题:&nbsp;{{item.gwtitle?item.gwtitle:''}}
 						</view>
 						<view class="record_item_state">
 								<view v-if="item.result==10" style="color:#8ab689">已同意</view>
@@ -43,6 +43,10 @@ export default {
   onLoad() {
     this.Loading = true;
     this.getList();
+  },
+  onShow() {
+	 this.Loading = true;
+  	this.getList();
   },
   methods: {
     onPullDownRefresh() {

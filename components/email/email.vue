@@ -1,13 +1,7 @@
 <template>
   <scroll-view scroll-y="true" class="EmailBox">
     <view class="title">
-      <textarea
-        :value="mainData.title"
-        disabled
-        auto-height
-        :maxlength="-1"
-        class="addressee"
-      />
+      <textarea :value="mainData.title" disabled auto-height :maxlength="-1" class="addressee" />
     </view>
     <view class="nav"></view>
     <view class="name">发件人: {{ mainData.nickname }}</view>
@@ -22,42 +16,32 @@
     <view v-if="mainData.images">
       <view class="accessory-title"> 图片 </view>
       <view class="imgList">
-        <view
-          class="imgbox"
-          v-for="(item1, index1) in mainData.images"
-          :key="index1"
-          @click="seeimg(item1)"
-        >
+        <view class="imgbox" v-for="(item1, index1) in mainData.images" :key="index1" @click="seeimg(item1)">
           <image :src="item1.url" mode="" />
         </view>
       </view>
     </view>
     <view v-if="mainData.attachment">
       <view class="accessory-title"> 附件 </view>
-      <view
-        class="accessory-box"
-        v-for="(item, index) in mainData.attachment"
-        :key="index"
-      >
+      <view class="accessory-box" v-for="(item, index) in mainData.attachment" :key="index">
         <view class="accessory-icon">
-          <image
-            src="../../static/email/ico_data@3x.png"
-            mode="scaleToFill"
-            class="icon"
-          />
+          <image src="../../static/email/ico_data@3x.png" mode="scaleToFill" class="icon" />
         </view>
         <view class="accessory-content">
           <view class="accessory-name">{{ item.name }}</view>
           <view class="accessory-mb">{{ item.size }}</view>
         </view>
-        <view class="down"> 下载 </view>
+        <view class="down" @click="downfile(item)"> 下载 </view>
       </view>
     </view>
+    <l-file ref="lFile"></l-file>
   </scroll-view>
 </template>
 
 <script>
-import { timeFormat } from "@/utils/dateUtils.js";
+  import {
+    timeFormat
+  } from "@/utils/dateUtils.js";
 export default {
   props: {
     mainData: {
@@ -83,6 +67,11 @@ export default {
     getLocalTime(nS) {
           return timeFormat(nS, "yyyy-MM-dd hh:mm");
     },
+      downfile(item) {
+        this.$refs.lFile.download({url:item.url}).then(path=>{
+            this.$refs.lFile.open(path);
+        })
+      },
     seeimg(item) {
       wx.previewImage({
         urls: [item.url],

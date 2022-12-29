@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import emailInbox from "components/email-inbox/email-inbox";
+import emailInbox from "@/components/email-inbox/email-inbox";
 import Loading from "../../../pages/selectUser/components/Loading.vue";
 
 export default {

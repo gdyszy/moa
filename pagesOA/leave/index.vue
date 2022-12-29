@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<tab selectClass="Selfont" :tab-list="tabList" :tabCur.sync="TabCur" @change="tabChange" :selectStatus="selectStatus"></tab>
-		<view v-show="TabCur == 0">
+		<view v-if="TabCur == 0">
 			<start-submit @jump="tabChange" :sid="id"></start-submit>
 		</view>
-		<view v-show="TabCur == 1">
+		<view v-if="TabCur == 1">
 			<check-deatil :refresh="TabCur" ref="checkDetail"></check-deatil>
 		</view>
 	</view>

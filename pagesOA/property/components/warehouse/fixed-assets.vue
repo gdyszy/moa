@@ -1,14 +1,14 @@
 <template>
-  <view>
+  <view class="page">
     <!-- 资产管理 -->
     <view class="fixation" v-for="item in list" :key="item._id" @click="User(item._id)">
       <image src="../../../../static/property/ico_list_mob_@3x.png" mode="" style="width: 50rpx; height: 50rpx" class="image"></image>
       <text class="printer">
         {{item.category_name[0].category_name}} <text class="stick">|</text> {{ item.device_model }} </text
       ><br />
-      <text class="warehouse-item">入库时间：{{ newDate(item.create_date) }}</text>
+      <text class="warehouse-item">入库时间：{{ getLocalTime(item.create_date) }}</text>
       <text class="equip">
-        装备状态：<text class="use">{{ status[item.status] }}</text>
+        设备状态：<text class="use">{{ status[item.status] }}</text>
       </text>
     </view>
     <view class="Show"> 已显示全部 </view>
@@ -17,6 +17,7 @@
 
 <script>
 // import index from './index.vue'
+import { timeFormat } from "@/utils/dateUtils.js";
 export default {
   // components: {
   // 	index
@@ -26,7 +27,7 @@ export default {
       list: [],
       category: '',
       options: {
-        pageSize: 10,
+        pageSize: 100,
         pageCurrent: 1,
       },
       status: ['闲置', '使用中', '维修中', '报修'],
@@ -37,6 +38,9 @@ export default {
     this.GetData();
   },
   methods: {
+	    getLocalTime(nS) {
+	            return timeFormat(nS, "yyyy-MM-dd");
+	      },
     newDate(e) {
       let date = new Date(e);
       return date.toLocaleDateString().replace(/\//g, '-');
@@ -60,10 +64,9 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.result.data);
-          this.list = res.result.data;
           uni.hideLoading();
           if (res.result != null) {
+			  this.list = res.result.data;
             this.data = res.result.data;
             this.total = res.result.total;
           }
@@ -82,10 +85,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// page {
-//   // background-color:  #F4F5F7;
-//   // background-color: #CCCCCC;
-// }
 .fixation {
   width: 750rpx;
   height: 192rpx;

@@ -151,6 +151,7 @@ export default {
   components: {},
   watch: {
     itemVal: function (newVal, oldVal) {
+		console.log("this.itemVal:"+this.itemVal)
       this.$emit("inputVal", this.itemVal);
     },
     dTime: function (newVal, oldVal) {

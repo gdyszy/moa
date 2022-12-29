@@ -150,6 +150,7 @@ export default {
         .finally(() => {});
     },
     search() {
+		this.$store.state.departmentInfo={}
       const query = this.query.trim();
       if (!query) {
         query = "";
@@ -167,18 +168,19 @@ export default {
       });
     },
     depClick(department_id, name, percount, children) {
-      let url =
-        "./list2?department_id=" +
-        department_id +
-        "&name=" +
-        name +
-        "&percount=" +
-        percount +
-        "&from=email";
-      if (children != "") {
-        url = url + "&children=true";
-      }
-
+		if (children != "") {
+		 children = true
+		}else {
+			children= false
+		}
+		this.$store.state.departmentInfo ={
+			department_id:department_id,
+			name:name,
+			percount:percount,
+			children:children,
+			from:'email'
+		}
+		let url = './list2'
       uni.navigateTo({
         url: url,
       });

@@ -69,7 +69,6 @@ export default {
     };
   },
   onLoad(e) {
-	  
 	  let user =  this.$store.state.selectUser.selectUser.findIndex(item=>{
 	    this.searchList.push(item)
 	    })
@@ -86,6 +85,7 @@ export default {
       });
     },
     search() {
+		this.$store.state.departmentInfo={}
       const name = new RegExp(this.searchName);
       let list = this.list;
       this.searchList = list.filter((item) => {

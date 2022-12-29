@@ -131,9 +131,14 @@ export default {
     //发送消息
     async sendMessage() {
       if(Object.keys(this.data).length == 0) await this.getUser(this.userId);
+	 let user ={
+	  	nickname:this.data.nickname,
+	  	_id:this.data._id,
+	  	from:'contacts_message'
+	  }
       uni.navigateTo({
         url:
-          `/pages/message/user-chat/user-chat?user=${encodeURIComponent(JSON.stringify(this.data))}`,
+          `/pages/message/user-chat/user-chat?user=${JSON.stringify(user)}`,
       });
     },
     getUser(id) {

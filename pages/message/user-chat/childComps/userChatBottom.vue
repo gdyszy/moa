@@ -1,9 +1,9 @@
 <template>
   <view>
     <view class="footer">
-      <!-- #ifdef APP-PLUS || H5 -->
+      <!-- #ifdef APP-PLUS || H5||MP-WEIXIN -->
       <image
-        src="../image/ico_Emoji.png"
+        :src="imgUrl"
         class="emoji"
         @tap.stop="showBottom"
       />
@@ -26,14 +26,15 @@
         发送
       </view>
     </view>
-    <!-- #ifdef APP-PLUS || H5 -->
-    <view class="emojiBox" v-show="isShow" @tap.stop="!showBottom">
-      <view class="box">
-        <image src="../image/ico_Emoji.png" mode=""></image>
+    <!-- #ifdef APP-PLUS || H5 ||MP-WEIXIN -->
+    <view  v-show="isShow" @tap.stop="!showBottom">
+    <swiper class="emoji-swiper" indicator-dots="true" duration="150">
+    	<swiper-item v-for="(item,pid) in emojiList" :key="pid">
+    		<view v-for="(em,eid) in item" :key="eid" @tap="addEmoji(em)">
+    			<image mode="widthFix" :src="'/static/img/emoji/'+em.url"></image>
       </view>
-      <view class="box">
-        <image src="../image/ico_Emoji.png" mode=""></image>
-      </view>
+    	</swiper-item>
+    </swiper>
     </view>
     <!-- #endif -->
   </view>
@@ -60,9 +61,15 @@ export default {
     return {
       content: "",
       isShow: this.showB,
+	  emojiList:emotionMap(),
+	  imgUrl:require("@/static/ico_Emoji.png")
     };
   },
   methods: {
+	  //添加表情
+	  addEmoji(em) {
+	  	this.content += em.alt;
+	  },
     submit() {
       if (this.content == "") return;
       this.$emit("submit", this.content);
@@ -98,6 +105,9 @@ export default {
 @import "../chat.css";
 .footer {
   width: 100%;
+ min-height: 100upx;
+ background-color: #f2f2f2;
+ z-index: 20;
 }
 
 .emojiBox {
@@ -121,4 +131,46 @@ export default {
     }
   }
 }
+.emoji-swiper {
+ @media screen and (max-width: 820px) {
+     height: 65vw;
+	 swiper-item {
+	 	display: flex;
+	 	align-content: center;
+    justify-content: center;
+	 	flex-wrap: wrap;
+	 	view {
+	 		width: 15vw;
+	 		height: 13vw;
+	 		display: flex;
+	 		justify-content: center;
+	 		align-items: center;
+	 		image {
+	 			width: 9vw;
+	 			height: 9vw;
+	 		}
+	 	}
+	 }
+    }
+	@media screen and (min-width: 821px) {
+	// height: 20vw;
+	swiper-item {
+		display: flex;
+    justify-content: space-evenly;
+		align-content: center;
+		flex-wrap: wrap;
+		view {
+			width: 50px;
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			image {
+				width: 50px;
+				height: 50px;
+			}
+		}
+	}
+	}
+	}
 </style>

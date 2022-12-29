@@ -21,7 +21,7 @@
 				<uni-easyinput placeholder="备注" v-model="formData.comment" trim="both" />
 			</uni-forms-item> -->
 			<uni-forms-item name="" label="部门名称">
-				<uni-easyinput placeholder="选择部门" :disabled="true" v-model="formData.department_name" trim="both"
+				<uni-easyinput placeholder="选择部门" @focus="showTree('department')" v-model="formData.department_name" trim="both"
 					@iconClick="showTree('department')" suffixIcon="search" />
 			</uni-forms-item>
 			<uni-forms-item name="department_id" label="部门ID" v-show="false">

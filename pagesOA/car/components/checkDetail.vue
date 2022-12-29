@@ -28,12 +28,6 @@ export default {
         result: 0,
       },
       list: [
-        {
-          username: "文西",
-          department: [{ name: "测试部" }],
-          create_date: "2020 11-11 12:00",
-          gwtitle: "123",
-        },
       ],
       typeFrom: 3,
     };
@@ -100,10 +94,4 @@ export default {
 </script>
 
 <style scoped>
-.tips {
-  color: #b2b2b2;
-  width: 40%;
-  margin: 20rpx auto;
-  text-align: center;
-}
 </style>

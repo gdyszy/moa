@@ -2,10 +2,7 @@
 	"bsonType": "object",
 	"required": ["bannerfile"],
 	"permission": {
-		"delete": true,
-		"read": true,
-		"create": true,
-		"update": true
+		"read": true
 	},
 	"properties": {
 		"_id": {
@@ -17,65 +14,41 @@
 			"title": "图片文件",
 			"description": "图片文件信息，包括文件名、url等"
 		},
-		"newsfl": {
+		"open_url": {
 			"bsonType": "string",
-			"description": "",
-			"title": "新闻分类",
-			"trim": "both"
-		},
-		"create_date": {
-			"bsonType": "timestamp",
-			"description": "创建时间",
-			"forceDefaultValue": {
-				"$env": "now"
-			}
-		},
-		"content": {
-			"bsonType": "string",
-			"description": "",
-			"title": "内容",
+			"description": "点击跳转目标地址。如果是web地址则使用内置web-view打开；如果是本地页面则跳转本地页面；如果是schema地址则打开本地的app",
+			"title": "点击目标地址",
+			"format": "url",
+			"pattern": "^(http:\/\/|https:\/\/|\/|.\/|@\/)\\S",
 			"trim": "both"
 		},
 		"title": {
 			"bsonType": "string",
-			"description": "",
+			"description": "注意标题文字颜色和背景图靠色导致看不清的问题",
 			"maxLength": 20,
 			"title": "标题",
 			"trim": "both"
 		},
-		"countread": {
+		"sort": {
 			"bsonType": "int",
-			"description": "阅读数"
+			"description": "数字越小，排序越前",
+			"title": "排序"
 		},
-		"weight": {
-			"bsonType": "int",
-			"description": "权重"
+		"category_id": {
+			"bsonType": "string",
+			"description": "多个栏目的banner都存在一个表里时可用这个字段区分",
+			"title": "分类id"
 		},
 		"status": {
-			"bsonType": "int",
-			"description": "状态：0 正常 1 隐藏",
-			"title": "状态",
-			"defaultValue": 0,
-			"enum": [{
-				"text": "正常",
-				"value": 0
-			}, {
-				"text": "隐藏",
-				"value": 1
-			}]
+			"bsonType": "bool",
+			"defaultValue": true,
+			"title": "生效状态"
 		},
-		"tuijian": {
-			"bsonType": "int",
-			"description": "推荐：0 否 1 是",
-			"title": "推荐",
-			"defaultValue": 0,
-			"enum": [{
-				"text": "否",
-				"value": 0
-			}, {
-				"text": "是",
-				"value": 1
-			}]
+		"description": {
+			"bsonType": "string",
+			"description": "维护者自用描述",
+			"title": "备注",
+			"trim": "both"
 		}
 	}
 }

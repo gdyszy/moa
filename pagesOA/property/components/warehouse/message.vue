@@ -45,6 +45,7 @@
 </template>
 
 <script>
+	import { timeFormat } from "@/utils/dateUtils.js";
 export default {
   data() {
     return {
@@ -57,6 +58,9 @@ export default {
     this.GetDetailData(id);
   },
   methods: {
+	  getLocalTime(nS) {
+	          return timeFormat(nS, "yyyy-MM-dd");
+	    },
     GetDetailData(id) {
       uniCloud
         .callFunction({

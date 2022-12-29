@@ -1,5 +1,6 @@
 <template>
-  <view>
+  <view class="page">
+	  <view class="tips" v-if="userList.length==0">已显示全部</view>
     <scroll-view scroll-y="true" style="height: 100%">
       <template v-if="userList.length > 0">
         <block  v-for="(item, index) in userList" :key="index">
@@ -7,6 +8,7 @@
         </block>
       </template>
     </scroll-view>
+	 
   </view>
 </template>
 

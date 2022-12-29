@@ -118,6 +118,7 @@
 						}
 					}
 					// 生成对象
+					this.recordList= []
 					for(let i in this.dateList){
 						let obj={
 							date:this.dateList[i],

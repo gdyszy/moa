@@ -58,42 +58,36 @@
 			}
 		},
 		onLoad(e) {
-			if (e.name) {
-				this.department = e.name
-			}
-			if (e.percount) {
-				this.percount = e.percount
-			}
-			this.department_id = e.department_id
-			if (e.children == "true") {
-				this.getDepartment(e.department_id);
-				this.getUser(e.department_id);
-			} else if (e.search == "true") {
+			  let departmentInfo =  this.$store.state.departmentInfo
+			  if(departmentInfo){
+				if (departmentInfo.name) {
+				  this.department = departmentInfo.name;
+				}
+				if (departmentInfo.percount) {
+				  this.percount = departmentInfo.percount;
+				}
+				this.department_id = departmentInfo.department_id
+				this.getDepartment(departmentInfo.department_id);
+				this.getUser(departmentInfo.department_id);
+			  }
+			  if (e.search == "true") {
 				this.query = e.query
 				this.getSearch(e.query)
-			} else {
-				this.getUser(e.department_id);
-			}
+			} 
 			if (uni.getStorageSync('userInfo').role == 'admin') {
 				this.ContactsAdd = true;
 			}
 		},
 		onPullDownRefresh() {
-			this.$refs.udb.loadData({
-				clear: true
-			}, () => {
-				uni.stopPullDownRefresh()
-			})
 		},
 		onReachBottom() {
-			this.$refs.udb.loadMore()
 		},
 		methods: {
 			getDepartment(id) {
 				const parent_id = id
-				db.collection("opendb-department").orderBy("sort asc").where({
+				db.collection("opendb-department").where({
 						'parent_id': id
-					}).get()
+					}).orderBy("sort asc").get()
 					.then((res) => {
 						this.departmentData = res.result.data;
 					}).catch((err) => {
@@ -139,6 +133,7 @@
 				uni.navigateBack({})
 			},
 			search() {
+				this.$store.state.departmentInfo={}
 				const query = this.query.trim()
 				if (!query) {
 					query = ''
@@ -177,12 +172,14 @@
 					}).finally(() => {})
 			},
 			loadData(clear = true) {
-				this.$refs.udb.loadData({
-					clear
-				})
 			},
 			depClick(department_id, name, percount) {
-				let url = './list2?department_id=' + department_id + '&name=' + name + '&percount=' + percount;
+				this.$store.state.departmentInfo ={
+					department_id:department_id,
+					name:name,
+					percount:percount
+				}
+				let url = './list2';
 				uni.navigateTo({
 					url: url
 				})
@@ -199,9 +196,6 @@
 					events: {
 						// 监听新增数据成功后, 刷新当前页面数据
 						refreshData: () => {
-							this.$refs.udb.loadData({
-								clear: true
-							})
 						}
 					}
 				})

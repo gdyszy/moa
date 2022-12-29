@@ -135,6 +135,8 @@ export default {
   },
 
   methods: {
+	optname(e){
+	},
  nowTime(){
       let time = Date.now()
        return timeFormat(time, "yyyy-MM-dd hh:mm");
@@ -142,14 +144,23 @@ export default {
 
 
     submit() {
+		let  nickname = uni.getStorageSync('userInfo').nickname?uni.getStorageSync('userInfo').nickname:uni.getStorageSync('userInfo').username?uni.getStorageSync('userInfo').username:uni.getStorageSync('userInfo').mobile?uni.getStorageSync('userInfo').mobile:''
+		if(this.gwGetType==null){
+		uni.showToast({
+		  icon: "none",
+		  duration:2000,
+		  title: "流程配置异常，请联系管理员。",
+		});
+		return;	
+		}
       let params = {
-        title: uni.getStorageSync("userInfo").nickname + "提交的车辆退回申请",
+        title: nickname + "提交的车辆退回申请",
 		sericnum:timeFormat(this.gwGetType.getSN, "yyyyMMdd") + this.gwGetType.getSN,
         flowcontent: this.gwGetType.flowcontent,
         flowid: this.flowid, //用车申请-获取gwGetType 返回的_id
         modeid: 4, //用车申请 3  ，车辆退回申请 4
         user_id: uni.getStorageSync("userInfo").username, // 车辆使用人id
-        username: uni.getStorageSync("userInfo").nickname, // 车辆使用人名称
+        username: nickname, // 车辆使用人名称
         car_begin_time: this.formData.car_begin_time, //  用车开始时间
         car_end_time: this.formData.car_end_time, // 用车结束时间
         car_id: this.formData.car_id, //  车辆id
@@ -163,6 +174,7 @@ export default {
      uni.showToast({
        icon: "none",
        title: "请输入车辆借出时间",
+	   duration:2000,
      });
      return;
    }
@@ -170,6 +182,7 @@ export default {
      uni.showToast({
        icon: "none",
        title: "请输入车辆退回时间",
+	   duration:2000,
      });
      return;
    }
@@ -177,6 +190,7 @@ export default {
      uni.showToast({
        icon: "none",
        title: "请选择车辆接收人",
+	   duration:2000,
      });
      return;
    }

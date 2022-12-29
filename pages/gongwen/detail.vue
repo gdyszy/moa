@@ -29,7 +29,7 @@
       <view class="baseMsg_item">
         <view class="baseMsg_item_title">所在部门</view>
         <view v-if="listDetail.department" class="baseMsg_content">{{
-          listDetail.department[0].name
+          listDetail.department[0]?listDetail.department[0].name:''
         }}</view>
         <!-- #ifdef MP-WEIXIN -->
         <view v-if="listDetail.department.length == 0">无</view>

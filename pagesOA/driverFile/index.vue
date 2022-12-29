@@ -1,9 +1,10 @@
 <template>
-<view>
+<view class="page">
     <view v-for="(item,index) in driverFileInfo" :key="index">
     <checkDeatil :title="`${item.nickname} | ${item.department[0].pathName}`" :list="list" :statusText="statusText" :listText="item.mobile" :status="item.status"  @checkDetail="checkDetail(item._id)">
     </checkDeatil>
     </view>
+	<view class="tips">已显示全部</view>
 </view>
   
 </template>
@@ -67,11 +68,3 @@ export default {
 
 }
 </script>
-
-<style lang="less" scoped>
-*{
-    background-color: #f5f5f7;
-    margin: 0;
-    padding: 0;
-}
-</style>

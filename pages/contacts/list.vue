@@ -129,6 +129,7 @@
 				}) */
 			},
 			search() {
+				this.$store.state.departmentInfo={}
 				const query = this.query.trim()
 				if (!query) {
 					query = ''
@@ -143,11 +144,18 @@
 				})
 			},
 			depClick(department_id, name, percount, children) {
-				let url = '/pagesContacts/contacts/list2?department_id=' + department_id + '&name=' + name + '&percount=' + percount;
-				if (children != '') {
-					url = url + '&children=true'
+				if (children != "") {
+				 children  =true
+				}else {
+					children= false
 				}
-				
+				this.$store.state.departmentInfo ={
+					department_id:department_id,
+					name:name,
+					percount:percount,
+					children:children
+				}
+				let url = '/pagesContacts/contacts/list2';
 				uni.navigateTo({
 					url: url
 				})

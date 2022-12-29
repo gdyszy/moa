@@ -9,7 +9,7 @@
 			</uni-forms-item>
 			<uni-forms-item name="department_id" label="部门" labelPosition="top" :labclass="0">
 				<!-- <view class="depart" @click="showTree()">{{department}}</view> -->
-				<uni-easyinput placeholder="选择部门" :disabled="true" v-model="formData.department_name" trim="both"
+				<uni-easyinput placeholder="选择部门" @focus="showTree('department')" v-model="formData.department_name" trim="both"
 						@iconClick="showTree('department')" suffixIcon="search" />
 				</uni-forms-item>
 			</uni-forms-item>

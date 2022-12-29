@@ -134,6 +134,35 @@
 		,
 		{
 			"path": "pages/selectUser/list2"
+		},
+		{
+		    "path": "uni_modules/yszyun-survey-app/pages/survey/edit",
+		    "style": {
+		        "navigationBarTitleText": "编辑"
+		    }
+		},
+		{
+		    "path": "uni_modules/yszyun-survey-app/pages/survey/list",
+		    "style": {
+		        "navigationBarTitleText": "列表"
+		    }
+		},
+		{
+		    "path": "uni_modules/yszyun-survey-app/pages/survey/detail",
+		    "style": {
+		        "navigationBarTitleText": "详情"
+		    }
+		}
+		,{
+		    "path" : "uni_modules/yszyun-survey-app/pages/survey-problem/add",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		},
+		{
+			"path": "pages/webview/index"
 		}
 	],
 	"subPackages": [

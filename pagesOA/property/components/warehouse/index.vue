@@ -6,7 +6,7 @@
         <uni-forms-item label="设备名称" required class="equipment-item"></uni-forms-item>
         <view class="printer">
           <picker @change="bindChange" :value="category_index" :range="category">
-            <view class="uni-input input">{{ category[category_index] }}</view>
+            <view class="uni-input input">{{ category[category_index]?category[category_index]:'暂无数据，请在管理后台添加。' }}</view>
           </picker>
         </view>
       </uni-forms>
@@ -36,11 +36,11 @@
         <view class="guarantee">保修年限 (年)</view>
         <textarea type="textarea" placeholder="请填写保修年限" v-model.trim="app.repair_year" @chenge="chenge"></textarea>
       </uni-forms>
-      <!-- 报修结束时间 -->
+      <!-- 保修结束时间 -->
       <uni-forms :modelValue="baseFormData" class="relation-item tall">
-        <view class="guarantee repairs">报修结束时间</view>
+        <view class="guarantee repairs">保修结束时间</view>
         <uni-datetime-picker
-          placeholder="请选择报修结束时间"
+          placeholder="请选择保修结束时间"
           class="picker"
           type="date"
           :image="true"
@@ -141,11 +141,14 @@ export default {
         })
         .then((res) => {
           let { data } = res.result;
-          this.oldCategory = data;
-          this.category = data.map((item) => {
-            return item.category_name;
-          });
-		  _this.app.property_device_category_id = this.oldCategory[0]._id
+		  if(data!=''){
+			this.oldCategory = data;
+			this.category = data.map((item) => {
+			  return item.category_name;
+			});
+			_this.app.property_device_category_id = this.oldCategory[0]._id  
+		  }
+         
           uni.hideLoading();
         })
         .catch((err) => {
@@ -161,8 +164,10 @@ export default {
       this.app.status = e.target.value;
     },
     bindChange(e) {
-      this.category_index = e.target.value;
-      this.app.property_device_category_id = this.oldCategory[this.category_index]._id;
+	  if(this.oldCategory!=''){
+		this.category_index = e.target.value;
+		this.app.property_device_category_id = this.oldCategory[this.category_index]._id;  
+	  }
     },
     submit() {
       if (this.app.property_device_category_id == '') {
@@ -428,6 +433,9 @@ button {
 .relation-item-mp{
 	/* #ifdef MP */
 	padding-bottom: 160rpx;
+	/* #endif */
+	/* #ifdef APP-PLUS */
+	padding-bottom: 120rpx;
 	/* #endif */
 	
 }

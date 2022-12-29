@@ -15,7 +15,7 @@
 <script>
 // import header from 'pagesOA/email/sendEmails/components/header'
 import Head from "./components/Head.vue";
-import Bottom from "pagesOA/email/sendEmails/components/Bottom";
+import Bottom from "@/pagesOA/email/sendEmails/components/Bottom";
 export default {
   components: {
     Head,
@@ -246,7 +246,7 @@ export default {
               this.navBack = false;
               setTimeout(() => {
                 uni.navigateBack({
-                  delta: 1,
+                  delta: 2,
                 });
               }, 2000);
               return;

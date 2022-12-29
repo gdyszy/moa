@@ -27,7 +27,7 @@
             @click="addAccessory()"
             :class="addition == 'accessory' ? 'active' : ''"
             class="little-box"
-          >
+           v-if="showaattachment">
             <image
               src="../../../../static/email/icon_annud_@3x.png"
               mode="scaleToFill"
@@ -60,7 +60,13 @@ export default {
   data() {
     return {
       addition: "",
+	  showaattachment:true
     };
+  },
+  created() {
+  	// #ifdef APP-PLUS
+  	this.showaattachment =false
+  	// #endif
   },
   methods: {
     picture(e) {

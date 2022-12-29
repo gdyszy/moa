@@ -18,13 +18,14 @@
 		</view>
 		
 		<!-- 设备名称 -->
-		<view class="Show" v-for="item in List">
+		<view class="Show"  v-for="(item,index) in List" :key="index">
 			<view class="Show-data">
 				<view class="data-item">{{item.category_name}}</view>
-				<view class="">{{item.scrapNum}}</view>
 				<view class="">{{item.usableNum}}</view>
+				<view class="">{{item.scrapNum}}</view>
 			</view>
 		</view>
+		<view class="tips">已显示全部</view>
 	</view>
 </template>
 

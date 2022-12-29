@@ -56,7 +56,7 @@
     <view class="details">
       <textarea
       v-model="addressInfoName.text"
-        placeholder="输入文本样式"
+        placeholder="输入内容"
         auto-height
         :maxlength="-1"
         class="text"

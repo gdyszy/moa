@@ -52,13 +52,11 @@ export default {
     tabChange(index) {
       this.TabCur = index;
       this.TabCur == 1 ? (this.selectStatus = true) : (this.selectStatus = false);
-      console.log(index);
     },
     custom(obj) {
       this.TabCur = obj.tabIndex;
       this.filterIndex = obj.sid;
       this.$refs.checkDetail.getList();
-      console.log(obj);
     },
     resvise(e) {
       this.TabCur = e.tabIndex;

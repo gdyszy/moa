@@ -26,7 +26,6 @@
 	import {
 		validator
 	} from '../../js_sdk/validator/opendb-feedback.js';
-	console.log(validator);
 	const db = uniCloud.database();
 	const dbCollectionName = 'opendb-feedback';
 
@@ -101,6 +100,9 @@
 		display: initial;
 	}
 	.uni-container {
+		/* #ifdef APP-PLUS */
+		width: 100%;
+		/* #endif */
 		padding: 15px;
 	}
 

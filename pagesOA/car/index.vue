@@ -126,7 +126,7 @@ export default {
       this.flowid = e._id;
       let data = {
         flowid: e._id,
-        department_id: uni.getStorageSync("userInfo").department_id[0],
+        department_id: uni.getStorageSync("userInfo").department_id?uni.getStorageSync("userInfo").department_id[0]:'',
       };
 
       uni.showLoading();
@@ -139,8 +139,9 @@ export default {
           },
         })
         .then((res) => {
-
+		if(res.result){
           this.gwGetType = res.result;
+		  }
           uni.hideLoading();
         })
         .catch((err) => {

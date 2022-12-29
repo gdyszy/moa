@@ -1,8 +1,9 @@
 <template>
   <view @click="hide" style="height: 100%">
     <scroll-view
+    class="scroll-view"
       scroll-y="true"
-      class="content"
+      :class="isShow?'contentplus':'content' "
       :scroll-into-view="scrollInto"
       scroll-with-animation
     >
@@ -70,9 +71,9 @@ export default {
     }
   },
   onReady() {
-    // this.timer = setInterval(() => {//定时任务获取聊天记录
-    //     this.initChatDetail();
-    // }, 1500);
+  this.timer = setInterval(() => {//定时任务获取聊天记录
+        this.initChatDetail();
+    }, 1500);
   },
   onUnload(){
     // clearInterval(this.timer);
@@ -200,12 +201,31 @@ page {
   /* #endif */
   width: 750rpx;
 }
-
+  /* #ifdef MP-WEIXIN */
+  .scroll-view{
+    height: calc(100vh - 100rpx);
+  }
+  /* #endif */
+.contentplus {
+  padding: 0;
+  position: fixed;
+  left: 0;
+  /* #ifdef H5 */
+  top: 80rpx;
+  height: calc(100vh - 520rpx);
+  /* #endif */
+  /* #ifdef APP-PLUS */
+  top: 0rpx;
+  height: calc(100vh - 440rpx);
+  /* #endif */
+  width: 750rpx;
+}
 .footer-btn {
+	background-color: #f5f6f7;
   width: 750rpx;
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 100rpx;
+  // height: 100rpx;
 }
 </style>

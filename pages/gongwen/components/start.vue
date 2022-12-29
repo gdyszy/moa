@@ -51,7 +51,7 @@
         required="true"
         @inputVal="in_content"
       />
-      <from-item
+      <from-item v-show="showAttachments"
         ref="attachments"
         mode="upload"
         itemTitle="上传附件"
@@ -115,6 +115,7 @@ export default {
   },
   data() {
     return {
+	  showAttachments:true,
       multiple: false, //单多选
       list: [], //搜索选择器数据
       treeStatus: 1, //树组件加载状态 1，正在加载，2·暂无数据
@@ -185,16 +186,21 @@ export default {
   },
 
   mounted() {
+	  // #ifdef APP-PLUS
+	  //app 端不支持上传附件，先屏蔽
+	  this.showAttachments =false
+	  // #endif
+	   let  nickname = uni.getStorageSync('userInfo').nickname?uni.getStorageSync('userInfo').nickname:uni.getStorageSync('userInfo').username?uni.getStorageSync('userInfo').username:uni.getStorageSync('userInfo').mobile?uni.getStorageSync('userInfo').mobile:''
     if (this.startInfo.modeid == 1) {
       this.dTitle = "拟文日期";
       this.fwdw = "发文单位";
       this.formData.title =
-        uni.getStorageSync("userInfo").nickname + "提交的发文拟稿";
+        nickname+ "提交的发文拟稿";
     } else if (this.startInfo.modeid == 2) {
       this.dTitle = "收文日期";
       this.fwdw = "收文单位";
       this.formData.title =
-        uni.getStorageSync("userInfo").nickname + "提交的收文登记";
+        nickname + "提交的收文登记";
     }
     if (this.startInfo.flowid) {
       this.formData.flowid = this.startInfo.flowid;
@@ -207,7 +213,7 @@ export default {
           uni.getStorageSync("userInfo").department_id
         ) {
           this.formData.department_id =
-            uni.getStorageSync("userInfo").department_id[0];
+            uni.getStorageSync("userInfo").department_id?uni.getStorageSync("userInfo").department_id[0]:'';
         }
       } else {
       }
@@ -215,6 +221,9 @@ export default {
     this.getSN();
   },
   methods: {
+	  endCityVal(e){
+		  
+	  },
     reback(){
       uni.navigateBack({
          delta: 1
@@ -335,13 +344,16 @@ export default {
             name: "getSN",
             data: {
               flowid: this.formData.flowid,
-              department_id: uni.getStorageSync("userInfo").department_id[0],
+              department_id: uni.getStorageSync("userInfo").department_id?uni.getStorageSync("userInfo").department_id[0]:'',
             },
           },
         })
         .then((res) => {
-          this.formData.sericnum =
-            timeFormat(res.result.getSN, "yyyyMMdd") + res.result.getSN;
+			if(res.result){
+			this.formData.sericnum =
+			  timeFormat(res.result.getSN, "yyyyMMdd") + res.result.getSN;	
+			
+        
           this.formData.flowcontent = res.result.flowcontent;
           let flowList = this.formData.flowcontent;
 
@@ -351,6 +363,7 @@ export default {
               this.stepsOption.push(item);
             }
           });
+		  }
         });
     },
     in_gwtitle(e) {
@@ -385,6 +398,7 @@ export default {
         uni.showToast({
           icon: "none",
           title: "请输入标题",
+		  duration:2000,
         });
         return;
       }
@@ -392,6 +406,7 @@ export default {
         uni.showToast({
           icon: "none",
           title: "请选择日期",
+		  duration:2000,
         });
         return;
       }
@@ -399,6 +414,7 @@ export default {
         uni.showToast({
           icon: "none",
           title: "请输入文件字号",
+		  duration:2000,
         });
         return;
       }
@@ -406,6 +422,7 @@ export default {
         uni.showToast({
           icon: "none",
           title: "请输入内容",
+		  duration:2000,
         });
         return;
       }

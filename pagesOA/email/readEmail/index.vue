@@ -77,8 +77,8 @@ export default {
       let data = {
         theme: this.mainData.title,
         text: this.mainData.content,
-        file: this.mainData.images,
-        attachment: this.mainData.attachment,
+        picture: this.mainData.images,
+        file: this.mainData.attachment,
       };
 
       uni.navigateTo({

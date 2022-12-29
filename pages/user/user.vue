@@ -1,9 +1,12 @@
 <template>
 	<view class="page">
-		<uni-nav-bar padding="50rpx 0 0 0" backgroundimage="true" title="我的" :navtxtclass="0" :border="false"></uni-nav-bar>
-		
+			<view :style="{ height: statusBarHeight }" class="uni-status-bar">
+				<slot />
+			</view>
+			<uni-nav-bar  backgroundimage="true" title="我的" :navtxtclass="0" :border="false"></uni-nav-bar>
+			
 		<view class="center">
-			<view class="logo" @click="bindLogin" :hover-class="!hasLogin ? 'logo-hover' : ''">
+						<view class="logo" @click="bindLogin" :hover-class="!hasLogin ? 'logo-hover' : ''">
 				<image class="logo-img" :src="avatar"></image>
 				<view class="logo-title">
 					<view class="uni-list-item__content txt">
@@ -40,11 +43,18 @@
 					<text class="navigat-arrow">&#xe65e;</text>
 				</view>
 				
-				<view class="center-list-item" @click="goto('opinion')">
-					<image class="slot-image2" src="/static/img/ico_lxwm_@3x.png" mode="widthFix"></image>
+				<view class="center-list-item border-bottom" @click="goto('opinion')">
+					<image class="slot-image2" src="/static/img/ico_opinion@3x.png" mode="widthFix"></image>
 					<text class="list-text">意见反馈</text>
 					<text class="navigat-arrow">&#xe65e;</text>
 				</view>
+				<!-- #ifdef APP-PLUS||H5 -->
+				<view class="center-list-item" @click="goto('update_log')">
+					<image class="slot-image2" src="/static/img/ico_update_log@3x.png" mode="widthFix"></image>
+					<text class="list-text">版本记录</text>
+					<text class="navigat-arrow">&#xe65e;</text>
+				</view>
+				<!-- #endif -->
 			</view>
 			<!-- 清缓存 -->
 			<uni-popup id="popupDialogclear" ref="popupDialogclear" type="dialog">
@@ -71,6 +81,7 @@
 	export default {
 		data() {
 			return {
+				statusBarHeight: 20,
 				ref:false,
 				post: '',
 				nickname: '',
@@ -82,6 +93,9 @@
 		},
 		computed: {
 			...mapState(['hasLogin', 'forcedLogin', 'userName'])
+		},
+		mounted() {
+			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 'px'
 		},
 		onShow() {
 				this.thisload()
@@ -225,6 +239,12 @@
 					case 'upgrade':
 						this.update()
 						break;
+					case 'update_log':
+						let p = encodeURIComponent('https://ext.dcloud.net.cn/plugin?id=5038&update_log')
+						uni.navigateTo({
+							url: `/pages/webview/index?path=${p}`
+						})	
+						break;
 					default:
 						break;
 				}
@@ -233,18 +253,16 @@
 			update(){
 				// #ifdef APP-PLUS
 				plus.runtime.getProperty(plus.runtime.appid, function(widgetInfo) {
-					console.log('应用的 appid 为：' + plus.runtime.appid);
-					console.log('应用的 version 为：' + plus.runtime.version);
 					// console.log('应用的 widgetInfo 为：' + widgetInfo.version);
 					uniCloud.callFunction({
 						name: 'check-version',
 						data: {
-							appid: '__UNI__FEB3FC4',
+							appid: plus.runtime.appid,
 							appVersion: plus.runtime.version,
 							wgtVersion: widgetInfo.version
 						},
 						success: async (e) => {
-							console.log('async 应用:：',e);
+							//console.log('async 应用:：',e);
 							if (!e.result) return;
 							const {
 								code,
@@ -460,5 +478,15 @@
 		font-size: 13px;
 		letter-spacing: 0px;
 		text-align: right;
+	}
+	.slot-image2 {
+		/* #ifndef APP-NVUE */
+		display: block;
+		/* #endif */
+		margin-right: 16px;
+		margin-left: 6px;
+		margin-top: 12px;
+		width: 48rpx;
+		height: 48rpx;
 	}
 </style>

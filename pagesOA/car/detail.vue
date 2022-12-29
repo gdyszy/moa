@@ -243,45 +243,6 @@ export default {
           });
         });
     },
-    revoke() {
-      let formData = {
-        user_id: this.uid,
-        _id: this.id,
-      };
-      uniCloud
-        .callFunction({
-          name: "daily",
-          data: {
-            name: "dailyDelete",
-            data: formData,
-          },
-        })
-        .then((res) => {
-          uni.showToast({
-            title: "撤销成功",
-          });
-          this.timer = setTimeout(() => {
-            uni.navigateBack({
-              delta: 2,
-            });
-          }, 1500);
-        });
-    },
-    read() {
-      let formData = {
-        user_id: uni.getStorageSync("username"),
-        _id: this.id,
-      };
-      uniCloud
-        .callFunction({
-          name: "daily",
-          data: {
-            name: "dailyRead",
-            data: formData,
-          },
-        })
-        .then((res) => {});
-    },
     adpot(n) {
       uni.navigateTo({
         url: `/pages/daiban/adpot?status=${n}&id=${this.id}&gwflowid=${this.gwflowid}`,
@@ -373,6 +334,7 @@ export default {
 }
 
 .bottom {
+  z-index: 9999;
   background-color: #ffffff;
   display: flex;
   position: fixed;

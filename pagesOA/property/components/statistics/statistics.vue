@@ -29,7 +29,6 @@
 		},
 		methods: {
 			tabChange() {
-				console.log(123)
 				uni.navigateTo({
 					url: '/pagesOA/property/components/statistics/Quantity-Statistics'
 				})

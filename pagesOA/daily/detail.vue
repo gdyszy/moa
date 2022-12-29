@@ -51,9 +51,13 @@
 				<view class="bottom_ico"><image src="../../static/workOverTime/ico_revise.png" style="width: 100%; height: 100%;"></image></view>
 				<view class="bottom_text">确认修改</view>
 			</view>
-			<view class="bottom_btn" @click="revoke">
+			<view class="bottom_btn" @click="revoke" v-if="!isEdit">
 				<view class="bottom_ico"><image src="../../static/workOverTime/ico-cancel.png" style="width: 100%; height: 100%;"></image></view>
 				<view class="bottom_text">撤销</view>
+			</view>
+			<view class="bottom_btn" @click="cancel" v-if="isEdit">
+				<view class="bottom_ico"><image src="../../static/workOverTime/ico-cancel.png" style="width: 100%; height: 100%;"></image></view>
+				<view class="bottom_text">取消</view>
 			</view>
 		</view>
 	</view>
@@ -83,6 +87,9 @@
 			}
 		},
 		methods:{
+			cancel(){
+				this.isEdit=false
+			},
 			edit(){
 				this.isEdit=true
 			},
@@ -131,31 +138,44 @@
 						title:"修改成功！",
 						icon:"none"
 					})
-					// console.log(res)
-				})
-			},
-			revoke(){
-				let formData = {
-					user_id:this.uid,
-					_id:this.id
-				}
-				uniCloud.callFunction({
-					name: 'daily',
-					data: {
-						name: 'dailyDelete',
-						data: formData
-					}
-				}).then((res) => {
-					uni.showToast({
-						title:'撤销成功'
-					})
 					this.timer = setTimeout(() => {
 						uni.navigateBack({
 						    delta: 2
 						});
 					}, 1500)
-					
+					// console.log(res)
 				})
+			},
+			revoke(){
+				uni.showModal({
+					content: "确定撤回吗?",
+					success: res => {
+						if (res.confirm) {
+							let formData = {
+								user_id:this.uid,
+								_id:this.id
+							}
+							uniCloud.callFunction({
+								name: 'daily',
+								data: {
+									name: 'dailyDelete',
+									data: formData
+								}
+							}).then((res) => {
+								uni.showToast({
+									title:'撤销成功'
+								})
+								this.timer = setTimeout(() => {
+									uni.navigateBack({
+									    delta: 2
+									});
+								}, 1500)
+								
+							})
+						}
+					}
+				})
+				
 			},
 			read(){
 				let formData = {

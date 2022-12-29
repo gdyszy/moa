@@ -39,7 +39,6 @@ export default {
         });
     },
     routeTo(flowid, modeid) {
-		console.log(flowid,modeid)
       if (modeid == 3) {
         uni.navigateTo({
           url: "/pagesOA/car/index?flowid=" + flowid + "&modeid=" + modeid,

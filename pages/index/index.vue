@@ -28,7 +28,7 @@
 								<view class="grid-item-box" :style="{'backgroundColor':item.color}">
 									<view class="image_box">
 										<image :src="item.imgUrl" class="image image-sw" mode="aspectFill" />
-										<view class="remind" v-if="item.name == '工作通知' && recordCount!=''">
+										<view class="remind" v-if="item.name == '工作通知' && recordCount">
 											{{recordCount}}
 										</view>
 									</view>
@@ -44,7 +44,7 @@
 		</view>
 		<view style="padding: 0 14px;">
 			<swiper class="swiper-sw" :indicator-dots="false" :autoplay="true" :interval="5000" :duration="500">
-				<swiper-item v-for="(i,index) in bannerList" :key="index">
+				<swiper-item v-for="(i,index) in bannerList" :key="index" @click="openLink(i.open_url)">
 					<image class="banner" :src="i.bannerfile.url">
 				</swiper-item>
 			</swiper>
@@ -171,6 +171,15 @@
 			// 注意，这里要用个变量存this，不然进到getSystemInfo后this指向会变化，找不到data变量
 		},
 		methods: {
+			openLink(link){
+				if(link==''){
+					return false
+				}
+			let p = encodeURIComponent(link)
+			uni.navigateTo({
+				url: `/pages/webview/index?path=${p}`
+			})	
+			},
 			onPullDownRefresh(){
 				this.getRemind();
 				this.getSystemInfo();
@@ -212,7 +221,7 @@
 						},
 					})
 					.then((res) => {
-						if (res.result.affectedDocs > 0) {
+						if (res.result.affectedDocs >= 0 && res.result.affectedDocs <= 99) {
 							this.recordCount = res.result.affectedDocs
 						} else if (res.result.affectedDocs > 99) {
 							this.recordCount = '99+'

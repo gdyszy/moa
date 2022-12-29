@@ -245,6 +245,7 @@ export default {
     }
   },
   methods: {
+	  close(){},
     //下载文件
     wxdownloadfiles(url, name) {
       let fileType = name.lastIndexOf(".");

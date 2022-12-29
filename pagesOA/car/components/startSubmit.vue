@@ -177,6 +177,8 @@ export default {
     },
   },
   methods: {
+	  optname(e){},
+	  remarksVal(e){},
     goCarList(id) {
       uni.$once("selectCarData", (res) => {
         this.formData.car_num = res.car_num;
@@ -197,7 +199,7 @@ export default {
     chooseUser(e) {
       this.$store.state.selectUser.selectUser = [];
       uni.$once("selectUser", (res) => {
-        console.log(this.$store.state.selectUser.selectUser);
+       // console.log(this.$store.state.selectUser.selectUser);
         if (e == "optname") {
           let _optname = "";
           let _optid = "";
@@ -253,6 +255,7 @@ export default {
         uni.showToast({
           icon: "none",
           title: "请输入用车结束时间",
+		  duration:2000,
         });
         return;
       }else{
@@ -263,6 +266,7 @@ export default {
 				  uni.showToast({
 				    icon: "none",
 				    title: "不能小于开始时间",
+					duration:2000
 				  });
 				  return;
 			  }
@@ -272,6 +276,7 @@ export default {
         uni.showToast({
           icon: "none",
           title: "请输入出发地",
+		  duration:2000,
         });
         return;
       }
@@ -279,6 +284,7 @@ export default {
         uni.showToast({
           icon: "none",
           title: "请输入目的地",
+		  duration:2000,
         });
         return;
       }
@@ -286,19 +292,29 @@ export default {
         uni.showToast({
           icon: "none",
           title: "请输入用车事由",
+		  duration:2000,
         });
         return;
       }
       if (this.formData.car_id == "") {
         uni.showToast({
           icon: "none",
+		  duration:2000,
           title: "请选择车辆",
         });
         return;
       }
-
-      let params = {
-        title: uni.getStorageSync("userInfo").nickname + "提交的用车申请",
+		let  nickname = uni.getStorageSync('userInfo').nickname?uni.getStorageSync('userInfo').nickname:uni.getStorageSync('userInfo').username?uni.getStorageSync('userInfo').username:uni.getStorageSync('userInfo').mobile?uni.getStorageSync('userInfo').mobile:''
+     if(this.gwGetType==null){
+     uni.showToast({
+       icon: "none",
+       duration:2000,
+       title: "流程配置异常，请联系管理员。",
+     });
+     return;	
+     }
+	  let params = {
+        title: nickname + "提交的用车申请",
         sericnum:
           timeFormat(this.gwGetType.getSN, "yyyyMMdd") + this.gwGetType.getSN,
         flowcontent: this.gwGetType.flowcontent,
@@ -307,7 +323,7 @@ export default {
         optid: this.formData.optid, //随同人员id
         optname: this.formData.optname, // 随同人员名字
         user_id: uni.getStorageSync("userInfo").username, // 车辆使用人id
-        username: uni.getStorageSync("userInfo").nickname, // 车辆使用人名称
+        username: nickname, // 车辆使用人名称
         car_begin_time: this.formData.car_begin_time, //  用车开始时间
         car_end_time: this.formData.car_end_time, // 用车结束时间
         car_id: this.formData.car_id, //  车辆id

@@ -91,8 +91,10 @@
 		mounted() {
 			this.initClockIn();
 			this.getClockMonthDate();
-
-			//this.getLoaction('showLoad');
+      let timers = setTimeout(()=>{
+        this.getLoaction('showLoad');
+        clearTimeout(timers)
+      },2000)
 
 			var that = this;
 			this.timer = setInterval(() => {
@@ -142,7 +144,8 @@
 				if (this.isSclockList == false) {
 					uni.showToast({
 						title: '没有考勤打卡方案，请联系管理员！',
-						icon: 'none'
+						icon: 'none',
+						duration:2000
 					})
 					return false
 				}
@@ -323,6 +326,7 @@
 						if (val && val == 'showLoad') {
 							uni.hideLoading()
 						}
+						if(res.address!=undefined){
 						var ad = res.address.province
 						ad += res.address.city
 						ad += res.address.district
@@ -330,7 +334,7 @@
 						ad += res.address.streetNum
 						ad += res.address.poiName
 						that.address = ad
-
+						}
 						that.userLat = res.latitude
 						that.userLng = res.longitude
 						var length = that.getDistance(that.userLat, that.userLng, that.compLat, that.compLng)
@@ -339,6 +343,7 @@
 						if (length <= Number(that.distance)) {
 							that.inLocation = true
 						}
+						
 					},
 					fail: function(res) {
 						if (val && val == 'showLoad') {

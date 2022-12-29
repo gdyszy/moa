@@ -97,6 +97,17 @@ export default {
             },
           ],
         },
+		{
+		  title: '调查问卷',
+		  little_list: [
+		    {
+		      name: '问卷列表',
+		      img: '/static/ico_draft.svg',
+		      path: '/uni_modules/yszyun-survey-app/pages/survey/list',
+		    }
+		    
+		  ],
+		}
       ],
     };
   },

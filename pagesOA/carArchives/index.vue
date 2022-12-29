@@ -1,5 +1,5 @@
 <template>
-  <view style="background-color: #f5f5f7">
+  <view class="page">
     <view v-for="(item, index) in carListData" :key="index">
       <checkDeatil
         @checkDetail="checkDetail(item._id)"
@@ -10,6 +10,7 @@
         :statusText="statusText"
       ></checkDeatil>
     </view>
+	<view class="tips">已显示全部</view>
   </view>
 </template>
 
