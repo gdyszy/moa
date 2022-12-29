@@ -76,7 +76,7 @@ export default {
     }, 1500);
   },
   onUnload(){
-    // clearInterval(this.timer);
+     clearInterval(this.timer);
   },
   watch: {
     chatList(newVal) {
