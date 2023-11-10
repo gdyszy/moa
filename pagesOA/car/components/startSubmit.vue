@@ -331,6 +331,7 @@ export default {
         place_bengin: this.formData.place_bengin, //  出发地
         place_end: this.formData.place_end, // 目的地
         explain: this.formData.explain, // 用车事由
+		department_id:uni.getStorageSync("userInfo").department_id?uni.getStorageSync("userInfo").department_id[0]:''
       };
       uni.showLoading();
       uniCloud
