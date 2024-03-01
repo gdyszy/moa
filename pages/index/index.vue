@@ -281,7 +281,7 @@
 		/* border: 1px solid #2A6DF2; */
 		border-bottom-right-radius: 350px 50px;
 		border-bottom-left-radius: 350px 50px;
-		background: url(https://vkceyugu.cdn.bspapp.com/VKCEYUGU-0f215899-37db-41b7-8231-51232da1a1a3/f0ae76cd-d474-4f95-a900-5a777d37f3c0.png);
+		background: url(https://mp-ee288b07-dd0c-4a04-b7c0-3b41a5aa55eb.cdn.bspapp.com/cloudstorage/662d9194-d87a-4267-be80-efbbb1e135df.png);
 		background-size: contain;
 		height: 564rpx;
 		margin-bottom: 55px;

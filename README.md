@@ -73,7 +73,8 @@ OA审批、通知公告、考勤打卡、日报、通讯录和我的帐号管理
 
 # 产品演示
 
-用户端H5版本 [https://moa.yszyun.com/#/pages/login/login](https://moa.yszyun.com/#/pages/login/login)
+用户端H5版本
+[https://moa.yszyun.com/#/pages/login/login](https://moa.yszyun.com/#/pages/login/login)
 账号：tianlin
 密码：123456
 
@@ -103,13 +104,13 @@ OA审批、通知公告、考勤打卡、日报、通讯录和我的帐号管理
 └── uni.scss
 ```
 
-
+# 用户端部署说明
 * 配置appid 与管理后台的一致，将本项目的服务空间关联到管理后台项目上。
-* 右键上传cloudfunctions-aliyun文件夹下所有云函数(云函数上传完后请进云开发控制台将函数执行内存改至最大)
-* 选择/cloudfunctions-aliyun/db_init.json右键初始化云数据库
-![](https://wiki.yszyun.com/uploads/moa-admin/images/m_895636936e563a949911d1e2d2121531_r.jpg)
+
 * 使用HBuilderx运行到浏览器
 
+* 运行选择云端云函数
+![](https://wiki.yszyun.com/uploads/moa-admin/images/m_a684bf4340191ba856b6a9ffa42b86c9_r.png)
 ###### 移动办公操作手册
 [https://wiki.yszyun.com/docs/moa-unicloud/moa-unicloud-1ctudvht2ovdi](https://wiki.yszyun.com/docs/moa-unicloud/moa-unicloud-1ctudvht2ovdi)
 

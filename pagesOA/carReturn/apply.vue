@@ -169,6 +169,7 @@ export default {
         explain: this.formData.explain, //车辆退回状态
         optid: this.formData.optid, //接收人ID
         optname: this.formData.optname, //接收人姓名
+		department_id:uni.getStorageSync("userInfo").department_id?uni.getStorageSync("userInfo").department_id[0]:''
       };
    if (!params.car_begin_time) {
      uni.showToast({

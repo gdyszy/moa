@@ -2,8 +2,8 @@
     "name" : "企业移动办公-用户端",
     "appid" : "",
     "description" : "企业移动办公moa",
-    "versionName" : "2.1.6",
-    "versionCode" : 216,
+    "versionName" : "2.1.8",
+    "versionCode" : 218,
     "transformPx" : false,
     "app-plus" : {
         "usingComponents" : true,

@@ -268,22 +268,34 @@
 						this.isSclockList = false
 						return false
 					}
-					this.pid = res.result.schemePlaceList[0].pid
-					this.compLat = res.result.schemePlaceList[0].compLat
-					this.compLng = res.result.schemePlaceList[0].compLng
-					this.distance = Number(res.result.schemePlaceList[0].distance)
-					this.startWorkTime = res.result.schemetimeList[0].startTime
-					this.endWorkTime = res.result.schemetimeList[0].endTime
+					if(res.result.schemePlaceList){
+						this.pid = res.result.schemePlaceList[0].pid
+						this.compLat = res.result.schemePlaceList[0].compLat
+						this.compLng = res.result.schemePlaceList[0].compLng
+						this.distance = Number(res.result.schemePlaceList[0].distance)
+					}
+					if(res.result.schemetimeList){
+						this.startWorkTime = res.result.schemetimeList[0].startTime
+						this.endWorkTime = res.result.schemetimeList[0].endTime
+					}
+					
 				})
 			},
 			ClockInAdd(val) {
 				let _this = this;
+				//考勤时间
+				let clockInSchemeTime= this.startWorkTime;
+				if(this.clockInCount!=0){
+					clockInSchemeTime= this.endWorkTime;
+				}
 				let params = {
 					"user_uid": uni.getStorageSync('username'),
 					"pid": _this.pid,
 					"clockTime": _this.nowTime,
 					"clockStatus": _this.signStatus,
-					"isField": _this.inLocation ? 1 : 0
+					"isField": _this.inLocation ? 1 : 0,
+					"clockInSchemeTime":clockInSchemeTime,
+					"clockInType":_this.clockInCount==0?0:1
 				}
 				if (val || _this.signStatus == 3) {
 					params['remarks'] = val
@@ -342,7 +354,7 @@
 						// console.log("distance:"+that.distance)
 						if (length <= Number(that.distance)) {
 							that.inLocation = true
-						}
+						}	
 						
 					},
 					fail: function(res) {
@@ -356,6 +368,7 @@
 						}
 					}
 				});
+				uni.hideLoading()
 			},
 			// 计算距离函数
 			Rad(d) {
