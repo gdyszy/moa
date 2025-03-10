@@ -119,5 +119,5 @@ OA审批、通知公告、考勤打卡、日报、通讯录和我的帐号管理
 
 ![](https://wiki.yszyun.com/uploads/moa-admin/images/m_a3639d790e5a0b1f9d1a1dd5e695894c_r.png)
 
-详情咨询电话： 400-008-1668
+详情咨询电话： 020-38373334
 邮箱：marketing@yszyun.com
